@@ -3,12 +3,14 @@ import { BuildProps } from './types/config';
 import { buildLoaders } from './buildLoaders';
 import { buildResolve } from './buildResolve';
 import { buildPlugins } from './buildPlugins';
+import { buildDevServer } from './buildDevServer';
 
 export const buildWebpackConfig = (options: BuildProps): webpack.Configuration => {
     const {
         paths,
         mode,
-        isDev
+        isDev,
+        port
     } = options;
 
     return {
@@ -25,5 +27,6 @@ export const buildWebpackConfig = (options: BuildProps): webpack.Configuration =
         },
         plugins: buildPlugins(paths),
         devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
+        devServer: isDev ? buildDevServer(options) : undefined,
     }
 }
