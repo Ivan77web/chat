@@ -23,6 +23,7 @@
     "@types/node": "^20.5.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "@types/react-router-dom": "^5.3.3",
     "@types/webpack": "^5.28.1",
     "@types/webpack-dev-server": "^4.7.2",
     "css-loader": "^6.8.1",
@@ -40,6 +41,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0"
   }
 }
