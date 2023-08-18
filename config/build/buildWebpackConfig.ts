@@ -17,7 +17,7 @@ export const buildWebpackConfig = (options: BuildProps): webpack.Configuration =
         entry: paths.entry,
         mode: mode,
         module: {
-            rules: buildLoaders(),
+            rules: buildLoaders(options),
         },
         resolve: buildResolve(paths),
         output: {
