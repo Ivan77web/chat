@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import cl from './App.module.scss';
-import { MainPage } from './MainPage';
-import { AboutPage } from './AboutPage';
+import { MainPage } from '@/pages/MainPage';
+import { AboutPage } from '@/pages/AboutPage';
 import { Link } from 'react-router-dom';
 import { Suspense } from 'react';
 
