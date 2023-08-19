@@ -1,6 +1,8 @@
+import { classNames } from "@/shared/lib/classNames/classNames";
+
 const AboutPage = () => {
     return (
-        <div>
+        <div className={classNames('', {}, [])}>
             Aboutpage
         </div>
     )

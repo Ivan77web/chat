@@ -1,6 +1,8 @@
+import { classNames } from "@/shared/lib/classNames/classNames"
+
 const MainPage = () => {
     return (
-        <div>
+        <div className={classNames('', {}, [])}>
             Main page
         </div>
     )
