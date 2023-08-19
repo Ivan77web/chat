@@ -4,10 +4,11 @@ import { MainPage } from '@/pages/MainPage';
 import { AboutPage } from '@/pages/AboutPage';
 import { Link } from 'react-router-dom';
 import { Suspense } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 export const App = () => {
     return (
-        <div className={cl.app}>
+        <div className={classNames(cl.app, {}, [])}>
             <Link to={'/main'}>Main</Link>
             <Link to={'/about'}>About</Link>
 
