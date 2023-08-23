@@ -1,8 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { CounterSchema } from '../type/counterSchema'
+import { getCount } from '../services/getCount'
+import { setCount } from '../services/setCount'
 
 const initialState: CounterSchema = {
-    value: 0,
+    isLoading: false,
+    error: undefined,
+    data: {
+        value: 0,
+    }
 }
 
 export const counterSlice = createSlice({
@@ -10,11 +16,27 @@ export const counterSlice = createSlice({
     initialState,
     reducers: {
         increment: (state) => {
-            state.value += 1
+            state.data.value += 1
         },
         decrement: (state) => {
-            state.value -= 1
+            state.data.value -= 1
         },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getCount.pending, (state) => {
+                state.isLoading = true;
+                state.error = undefined;
+            })
+            .addCase(getCount.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = undefined;
+                state.data = action.payload;
+            })
+            .addCase(getCount.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
     },
 })
 

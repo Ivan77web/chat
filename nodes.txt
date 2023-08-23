@@ -24,3 +24,46 @@ return configureStore<StateSchema>({
 3) Добавляем команды
     "start:server": "json-server --watch ./json-server/db.json --port 8000",
     "start:dev:server": "node ./json-server/index.js",
+
+##### Добавление Async Thunk #####
+
+В директорию services добавляем файл, в котормо описываем
+
+export const setCount = createAsyncThunk<Counter, number, { rejectValue: string }>(       \\\\ Counter - возвращает number - принимает
+    'counter/getCount',
+    async (value, thunkAPI) => {
+        try {
+            const response = await axios.post('http://localhost:8000/counter', { value: value }, {
+                headers: {
+                    Authorization: 'qwqwqw'
+                }
+            });
+
+            if (!response.data) throw new Error();
+
+            return response.data
+        } catch (e) {
+            console.log(e);
+            return thunkAPI.rejectWithValue('Error');
+        }
+    }
+)
+
+Затем пишем экстраредьюсеры
+
+extraReducers: (builder) => {
+        builder
+            .addCase(getCount.pending, (state) => {
+                state.isLoading = true;
+                state.error = undefined;
+            })
+            .addCase(getCount.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = undefined;
+                state.data = action.payload;
+            })
+            .addCase(getCount.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+    },

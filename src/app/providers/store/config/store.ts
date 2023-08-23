@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { StateSchema } from './stateSchema';
+import { StateSchema } from './StateSchema';
 import { counterReducer } from '@/entities/Counter';
 
 export const createReduxStore = (initialState?: StateSchema) => {
@@ -11,3 +11,5 @@ export const createReduxStore = (initialState?: StateSchema) => {
         preloadedState: initialState,
     })
 }
+
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
