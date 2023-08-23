@@ -1,0 +1,17 @@
+Добавление redux
+
+1) Ставим зависимости
+2) Создаем StoreProvider.tsx, store.ts, StateSchema.ts
+3) В StoreProvider.tsx создаем компонент, обернутый в <Provider store={store}>, принимаем в него дочерние компоненты, затем их прокидываем внутрь
+4) В StateSchema.ts описываем state
+5) В store.ts создаем функцию, которая возвращает
+
+return configureStore<StateSchema>({
+    reducer: {
+        counter: counterReducer,
+    },
+    devTools: true,
+    preloadedState: initialState,
+})
+
+6) Слайсы создаем по доке
