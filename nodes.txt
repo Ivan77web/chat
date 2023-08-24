@@ -189,3 +189,54 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
         </>
     )
 }
+
+
+
+
+
+
+
+
+##### Instance Api и Thunk config #####
+
+Для создания инстанса надо 
+
+1) создать файл api.ts
+
+export const $api = axios.create({
+    baseURL: 'http://localhost:8000',
+    headers: {
+        Authorization: 'qweqwe'
+    }
+})
+
+2) Прокинуть мидлвейр при создании стора (configureStore)
+
+middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    thunk: {
+        extraArgument: {
+            api: $api
+        }
+    }
+}),
+
+Thunk config
+
+Вместо {rejectValue}
+
+ThunkConfig<string>
+
+И в StateSchema
+
+interface ThunkExtraArg {
+    api: AxiosInstance
+}
+
+export interface ThunkConfig<T>{
+    rejectValue: T;
+    extra: ThunkExtraArg
+}
+
+
+
+    

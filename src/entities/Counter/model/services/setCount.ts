@@ -1,20 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { Counter, CounterSchema } from "../type/counterSchema"
-import axios from "axios"
+import { Counter } from "../type/counterSchema"
+import { ThunkConfig } from "@/app/providers/store/config/StateSchema";
 
-// interface setCountProps {
-//     value: number;
-// }
-
-export const setCount = createAsyncThunk<Counter, number, { rejectValue: string }>(
+export const setCount = createAsyncThunk<Counter, number, ThunkConfig<string>>(
     'counter/getCount',
     async (value, thunkAPI) => {
         try {
-            const response = await axios.post('http://localhost:8000/counter', { value: value }, {
-                headers: {
-                    Authorization: 'qwqwqw'
-                }
-            });
+            const response = await thunkAPI.extra.api.post('http://localhost:8000/counter', { value: value });
 
             if (!response.data) throw new Error();
 
