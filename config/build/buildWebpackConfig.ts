@@ -10,7 +10,7 @@ export const buildWebpackConfig = (options: BuildProps): webpack.Configuration =
         paths,
         mode,
         isDev,
-        port
+        apiUrl,
     } = options;
 
     return {
@@ -25,7 +25,7 @@ export const buildWebpackConfig = (options: BuildProps): webpack.Configuration =
             path: paths.build,
             clean: true,
         },
-        plugins: buildPlugins(paths),
+        plugins: buildPlugins(options),
         devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
         devServer: isDev ? buildDevServer(options) : undefined,
     }

@@ -1,0 +1,242 @@
+##### Добавление redux #####
+
+1) Ставим зависимости
+2) Создаем StoreProvider.tsx, store.ts, StateSchema.ts
+3) В StoreProvider.tsx создаем компонент, обернутый в <Provider store={store}>, принимаем в него дочерние компоненты, затем их прокидываем внутрь
+4) В StateSchema.ts описываем state
+5) В store.ts создаем функцию, которая возвращает
+
+return configureStore<StateSchema>({
+    reducer: {
+        counter: counterReducer,
+    },
+    devTools: true,
+    preloadedState: initialState,
+})
+
+6) Слайсы создаем по доке
+
+
+##### Добавление json-server #####
+
+1) Ставим зависимости
+2) Создаем json-server - db.json/index.js
+3) Добавляем команды
+    "start:server": "json-server --watch ./json-server/db.json --port 8000",
+    "start:dev:server": "node ./json-server/index.js",
+
+##### Добавление Async Thunk #####
+
+В директорию services добавляем файл, в котормо описываем
+
+export const setCount = createAsyncThunk<Counter, number, { rejectValue: string }>(       \\\\ Counter - возвращает number - принимает
+    'counter/getCount',
+    async (value, thunkAPI) => {
+        try {
+            const response = await axios.post('http://localhost:8000/counter', { value: value }, {
+                headers: {
+                    Authorization: 'qwqwqw'
+                }
+            });
+
+            if (!response.data) throw new Error();
+
+            return response.data
+        } catch (e) {
+            console.log(e);
+            return thunkAPI.rejectWithValue('Error');
+        }
+    }
+)
+
+Затем пишем экстраредьюсеры
+
+extraReducers: (builder) => {
+        builder
+            .addCase(getCount.pending, (state) => {
+                state.isLoading = true;
+                state.error = undefined;
+            })
+            .addCase(getCount.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = undefined;
+                state.data = action.payload;
+            })
+            .addCase(getCount.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+    },
+
+##### Добавление Async reducers #####
+
+1) Создаем файл reducerManager
+
+import { AnyAction, Reducer, ReducersMapObject, combineReducers } from "@reduxjs/toolkit"
+import { StateSchema, StateSchemaKey } from "./StateSchema"
+
+export function createReducerManager(initialReducers: ReducersMapObject<StateSchema>) {
+    const reducers = { ...initialReducers }
+
+    let combinedReducer = combineReducers(reducers)
+
+    let keysToRemove: StateSchemaKey[] = [];
+
+    return {
+        getReducerMap: () => reducers,
+        reduce: (state: StateSchema, action: AnyAction) => {
+            if (keysToRemove.length > 0) {
+                state = { ...state }
+                for (let key of keysToRemove) {
+                    delete state[key]
+                }
+                keysToRemove = [];
+            }
+
+            return combinedReducer(state, action)
+        },
+
+        add: (key: StateSchemaKey, reducer: Reducer) => {
+            if (!key || reducers[key]) {
+                return
+            }
+
+            reducers[key] = reducer
+
+            combinedReducer = combineReducers(reducers)
+        },
+
+        remove: (key: StateSchemaKey) => {
+            if (!key || !reducers[key]) {
+                return
+            }
+            delete reducers[key]
+            keysToRemove.push(key)
+            combinedReducer = combineReducers(reducers)
+        }
+    }
+}
+
+2) В файле store.ts
+
+const reducerManager = createReducerManager(rootReducers);
+
+const store = configureStore<StateSchema>({
+    reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
+    devTools: true,
+    preloadedState: initialState,
+});
+
+// @ts-ignore
+store.reducerManager = reducerManager;
+
+3) В StateSchema
+
+export type StateSchemaKey = keyof StateSchema;
+
+export interface ReducerManager {
+    getReducerMap: () => ReducersMapObject<StateSchema>;
+    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
+    add: (key: StateSchemaKey, reducer: Reducer) => void;
+    remove: (key: StateSchemaKey) => void;
+}
+
+export interface ReduxWithManager extends ToolkitStore<StateSchema> {
+    reducerManager: ReducerManager
+}
+
+4) Создаем DynamicModuleLoader
+
+import { ReactNode, useEffect } from "react"
+import { useStore } from "react-redux";
+import { Reducer } from "@reduxjs/toolkit";
+import { ReduxWithManager, StateSchemaKey } from "@/app/providers/store/config/StateSchema";
+
+interface DynamicModuleLoaderProps {
+    children: ReactNode;
+    reducers: ReducersList;
+}
+
+export type ReducersList = {
+    [name in StateSchemaKey]?: Reducer
+}
+
+export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
+    const {
+        children,
+        reducers
+    } = props;
+
+    const store = useStore() as ReduxWithManager;
+
+    useEffect(() => {
+        Object.entries(reducers).forEach(([name, reducer]) => {
+            store.dispatch({ type: `@INIT ${name} reducer` });
+            store.reducerManager.add(name as StateSchemaKey, reducer);
+        })
+
+        return () => {
+            Object.entries(reducers).forEach(([name, reducer]) => {
+                store.dispatch({ type: `@REMOVE ${name} reducer` });
+                store.reducerManager.remove(name as StateSchemaKey);
+            })
+        }
+    }, [])
+
+    return (
+        <>
+            {children}
+        </>
+    )
+}
+
+
+
+
+
+
+
+
+##### Instance Api и Thunk config #####
+
+Для создания инстанса надо 
+
+1) создать файл api.ts
+
+export const $api = axios.create({
+    baseURL: 'http://localhost:8000',
+    headers: {
+        Authorization: 'qweqwe'
+    }
+})
+
+2) Прокинуть мидлвейр при создании стора (configureStore)
+
+middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    thunk: {
+        extraArgument: {
+            api: $api
+        }
+    }
+}),
+
+Thunk config
+
+Вместо {rejectValue}
+
+ThunkConfig<string>
+
+И в StateSchema
+
+interface ThunkExtraArg {
+    api: AxiosInstance
+}
+
+export interface ThunkConfig<T>{
+    rejectValue: T;
+    extra: ThunkExtraArg
+}
+
+
+
+    
