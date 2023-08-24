@@ -1,9 +1,12 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector, useStore } from "react-redux"
 import { getCounterError, getCounterIsLoading, getCounterValue } from "../model/selectors/counterSelectors"
 import { useCallback, useEffect } from "react";
 import { getCount } from "../model/services/getCount";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { setCount } from "../model/services/setCount";
+import { ReduxWithManager } from "@/app/providers/store/config/StateSchema";
+import { counterReducer } from "../model/slice/CounterSlice";
+import { DynamicModuleLoader, ReducersList } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 
 export const Counter = () => {
     const count = useSelector(getCounterValue);
@@ -19,6 +22,10 @@ export const Counter = () => {
         dispatch(setCount(count + 1));
     }, [count, dispatch])
 
+    const reducers: ReducersList = {
+        counter: counterReducer
+    }
+
     useEffect(() => {
         dispatch(getCount());
     }, [])
@@ -30,7 +37,7 @@ export const Counter = () => {
     }
 
     return (
-        <div>
+        <DynamicModuleLoader reducers={reducers}>
             {
                 isLoading
                     ?
@@ -46,6 +53,6 @@ export const Counter = () => {
                         </>
                     )
             }
-        </div >
+        </DynamicModuleLoader>
     )
 }
