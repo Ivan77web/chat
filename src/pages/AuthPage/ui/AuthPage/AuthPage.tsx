@@ -1,7 +1,9 @@
+import { AuthByUsername } from "@/features/authByUsername";
+
 const AuthPage = () => {
     return (
         <div>
-            Auth
+            <AuthByUsername />
         </div>
     )
 }

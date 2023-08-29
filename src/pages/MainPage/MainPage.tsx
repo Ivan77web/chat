@@ -7,8 +7,6 @@ const MainPage = () => {
     return (
         <div className={classNames('', {}, [])}>
             Main page
-
-            <AuthByUsername />
         </div>
     )
 }
