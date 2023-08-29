@@ -1,0 +1,56 @@
+:root {
+    --font-family-main: "Nunito Sans", sans-serif;
+
+    // size s
+    --font-size-s: 12px;
+    --font-line-s: 16px;
+    --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+
+    // size m
+    --font-size-m: 16px;
+    --font-line-m: 24px;
+    --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+
+    // size l
+    --font-size-l: 24px;
+    --font-line-l: 32px;
+    --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+
+    // size xl
+    --font-size-xl: 32px;
+    --font-line-xl: 40px;
+    --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+
+
+    // Цвета
+    --overlay-color: rgba(0 0 0 / 60%);
+    --red-light: #f60202;
+    --red-dark: #ce0505;
+
+    // s
+    --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+
+    // m
+    --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-text);
+
+    // l
+    --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-header);
+
+    // xl
+    --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-header);
+
+    // redesigned
+    --dark-bg: #fff;
+    --bg: #eff5f6;
+    --light-bg: #e2eef1;
+    --text: #141c1f;
+    --hint: #adbcc0;
+    --cancel: #f77;
+    --save: #62de85;
+    --icon: #5ed3f3;
+    --accent: #00c8ff;
+    --scroll-to-top-button: black;
+    
+    // card
+    --card-bg: #d5d5d7;
+}
