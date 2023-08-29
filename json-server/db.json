@@ -4,12 +4,12 @@
   },
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "Ivan",
       "password": "123"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "Moderator",
       "password": "123"
     },
