@@ -1,4 +1,5 @@
 import { Counter } from "@/entities/Counter"
+import { AuthByUsername } from "@/features/authByUsername"
 import { classNames } from "@/shared/lib/classNames/classNames"
 import { useEffect } from "react"
 
@@ -7,7 +8,7 @@ const MainPage = () => {
         <div className={classNames('', {}, [])}>
             Main page
 
-            <Counter />
+            <AuthByUsername />
         </div>
     )
 }
