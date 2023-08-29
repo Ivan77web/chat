@@ -1,9 +1,11 @@
 import { Route, RouteProps, Routes } from "react-router-dom"
 import { routeConfig } from "../config/routeConfig"
-import { Suspense, memo, useCallback } from "react"
+import { Suspense, memo, useCallback, useEffect } from "react"
+import { AppRoutesProps } from "@/shared/types/router"
+import { RequireAuth } from "./RequireAuth"
 
 const AppRouter = () => {
-    const renderWithWrapper = useCallback((route: RouteProps) => {
+    const renderWithWrapper = useCallback((route: AppRoutesProps) => {
         const element = (
             <Suspense fallback={<div>LOADING</div>}>
                 {route.element}
@@ -14,7 +16,8 @@ const AppRouter = () => {
             <Route
                 key={route.path}
                 path={route.path}
-                element={element}
+                element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+                // element={element}
             />
         );
     }, [])
