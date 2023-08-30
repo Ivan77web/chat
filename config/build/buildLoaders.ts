@@ -28,8 +28,14 @@ export const buildLoaders = (options: BuildProps): webpack.RuleSetRule[] => {
         ],
     }
 
+    const cssLoader = {
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader"],
+    }
+
     return [
         typescriptLoader,
-        scssLoader
+        scssLoader,
+        cssLoader,
     ]
 }
