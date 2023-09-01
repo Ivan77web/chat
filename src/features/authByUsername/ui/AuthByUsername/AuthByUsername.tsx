@@ -23,7 +23,7 @@ const AuthByUsername = () => {
     const error = useSelector(getAuthDataError);
 
     const onChangeLogin = useCallback((value: string) => {
-        if(username){  
+        if (username) {
             setStatusLogin('default');
         }
 
@@ -31,7 +31,7 @@ const AuthByUsername = () => {
     }, [dispatch, username])
 
     const onChangePassword = useCallback((value: string) => {
-        if(password){  
+        if (password) {
             setStatusPassword('default');
         }
 
@@ -45,30 +45,26 @@ const AuthByUsername = () => {
     }, [dispatch, username, password])
 
     const validate = useCallback(() => {
-        let validate = false;        
+        let validate = false;
 
-        if(!username){  
+        if (!username) {
             setStatusLogin('error');
         } else {
             setStatusLogin('default');
         }
 
-        if(!password){  
+        if (!password) {
             setStatusPassword('error');
         } else {
             setStatusPassword('default');
         }
 
-        if(username && password){
+        if (username && password) {
             validate = true;
         }
 
         return validate
     }, [username, password])
-
-    const redusers: ReducersList = {
-        authData: authByUsernameReducer
-    }
 
     useEffect(() => {
         if (error) {
@@ -76,97 +72,71 @@ const AuthByUsername = () => {
         }
     }, [error])
 
-    // if (isLoading) {
-    //     console.log(isLoading);
-
-    //     return (
-    //         <ScreenSpinner state="done">Успешно</ScreenSpinner>
-    //     )
-
-    // }
-
-    // return (
-    //     <ScreenSpinner state="done">Успешно</ScreenSpinner>
-    // )
-
     return (
-        <DynamicModuleLoader reducers={redusers}>
+        <>
             <DynamicLoader isLoading={isLoading} error={error} isSuccess={isSuccess} />
 
-            <HStack justify="center">
-                <Group
-                    className={cl.login_block}
-                    header={
-                        <Header
-                            mode="tertiary"
+            <Div>
+                <VStack gap="16">
+                    <VStack gap="4" max>
+                        <Headline level="1">Логин</Headline>
+
+                        <FormItem
+                            status={statusLogin}
+                            className={cl.inputMax}
+                            bottom={
+                                statusLogin === 'error' ? 'Введите логин' : ''
+                            }
                         >
-                            Вход
-                        </Header>
-                    }
-                >
-                    <Div>
-                        <VStack gap="16">
-                            <VStack gap="4" max>
-                                <Headline level="1">Логин</Headline>
+                            <Input
+                                className={cl.inputMax}
+                                id="auth_login"
+                                type="text"
+                                value={username}
+                                onChange={(e) => onChangeLogin(e.target.value)}
+                            />
+                        </FormItem>
+                    </VStack>
 
-                                <FormItem
-                                    status={statusLogin}
-                                    className={cl.inputMax}
-                                    bottom={
-                                        statusLogin === 'error' ? 'Введите логин' : ''
-                                    }
-                                >
-                                    <Input
-                                        className={cl.inputMax}
-                                        id="auth_login"
-                                        type="text"
-                                        value={username}
-                                        onChange={(e) => onChangeLogin(e.target.value)}
-                                    />
-                                </FormItem>
-                            </VStack>
+                    <VStack gap="4" max>
+                        <Headline level="1">Пароль</Headline>
+                        <FormItem
+                            status={statusPassword}
+                            className={cl.inputMax}
+                            bottom={
+                                statusPassword === 'error'
+                                    ?
+                                    error ? 'Неверный пароль' : 'Введите пароль'
+                                    :
+                                    ''
+                            }
+                        >
+                            <Input
+                                id="examauth_passwordple"
+                                className={cl.inputMax}
+                                type="password"
+                                value={password}
+                                onChange={(e) => onChangePassword(e.target.value)}
+                            />
+                        </FormItem>
 
-                            <VStack gap="4" max>
-                                <Headline level="1">Пароль</Headline>
-                                <FormItem
-                                    status={statusPassword}
-                                    className={cl.inputMax}
-                                    bottom={
-                                        statusPassword === 'error'
-                                            ?
-                                            error ? 'Неверный пароль' : 'Введите пароль'
-                                            :
-                                            ''
-                                    }
-                                >
-                                    <Input
-                                        id="examauth_passwordple"
-                                        className={cl.inputMax}
-                                        type="password"
-                                        value={password}
-                                        onChange={(e) => onChangePassword(e.target.value)}
-                                    />
-                                </FormItem>
+                    </VStack>
 
-                            </VStack>
+                    <HStack gap="4" max justify="between">
+                        <Cell mode="selectable">
+                            Запомнить меня
+                        </Cell>
 
-                            <HStack gap="4" max justify="between">
-                                <Cell mode="selectable">
-                                    Запомнить меня
-                                </Cell>
-
-                                <Button
-                                    size="l"
-                                    onClick={onLogin}
-                                >
-                                    Войти
-                                </Button>
-                            </HStack>
-                        </VStack>
-                    </Div>
-                </Group>
-            </HStack>
-        </DynamicModuleLoader>
+                        <Button
+                            size="l"
+                            onClick={onLogin}
+                        >
+                            Войти
+                        </Button>
+                    </HStack>
+                </VStack>
+            </Div>
+        </>
     )
 }
 
