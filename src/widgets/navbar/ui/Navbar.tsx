@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom"
-import cl from './Navbar.module.scss';
-import { Logout } from "@/features/logout";
+import {
+    View,
+    Panel,
+    PanelHeader,
+} from "@vkontakte/vkui";
 
 export const Navbar = () => {
     return (
-        <div className={cl.navbar}>
-            <Link to={'/'}>Main</Link>
-            <Link to={'/about'}>About</Link>
-            <Logout />
-        </div>
+        <View activePanel="header">
+            <Panel id="header">
+                <PanelHeader>
+                    Chat
+                </PanelHeader>
+            </Panel>
+        </View>
     )
 }
