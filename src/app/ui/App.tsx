@@ -9,6 +9,8 @@ import { Navbar } from '@/widgets/navbar/ui/Navbar';
 import { AppRouter } from '../providers/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { initAuthData } from '@/entities/User/model/services/initAuthData';
+import { Alert, AppRoot, Avatar, Button, Cell, Group, Header, Panel, PanelHeader, Placeholder, Separator, SplitCol, SplitLayout, View } from '@vkontakte/vkui';
+import { Icon56UsersOutline, Icon56MentionOutline, Icon56MessageReadOutline } from '@vkontakte/icons';
 
 export const App = () => {
     const dispatch = useAppDispatch();
@@ -18,9 +20,11 @@ export const App = () => {
     }, [dispatch]);
 
     return (
-        <div className={classNames(cl.app, {}, [])}>
-            <Navbar />
-            <AppRouter />
-        </div>
+        <AppRoot>
+            <div className={classNames(cl.app, {}, [])}>
+                <Navbar />
+                <AppRouter />
+            </div>
+        </AppRoot>
     )
 }

@@ -6,6 +6,7 @@ const initialState: AuthByUsernameSchema = {
     username: '',
     password: '',
     isLoading: false,
+    isSuccess: false,
     error: '',
 }
 
@@ -25,13 +26,16 @@ export const authByUsernameSlice = createSlice({
             .addCase(authByUsername.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
+                state.isSuccess = false;
             })
             .addCase(authByUsername.fulfilled, (state) => {
                 state.isLoading = false;
+                state.isSuccess = true;
             })
             .addCase(authByUsername.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
+                state.isSuccess = false;
             });
     },
 })

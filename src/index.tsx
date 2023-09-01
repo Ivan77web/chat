@@ -3,6 +3,8 @@ import { App } from '@/app/ui/App';
 import '@/app/styles/index.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from './app/providers/store';
+import { AdaptivityProvider, ConfigProvider } from '@vkontakte/vkui';
+import '@vkontakte/vkui/dist/vkui.css';
 
 const container = document.getElementById('root');
 
@@ -14,7 +16,11 @@ const root = createRoot(container);
 root.render(
     <StoreProvider>
         <BrowserRouter>
-            <App />
+            <ConfigProvider>
+                <AdaptivityProvider>
+                    <App />
+                </AdaptivityProvider>
+            </ConfigProvider>
         </BrowserRouter>
-    </StoreProvider>,
+    </StoreProvider >,
 );

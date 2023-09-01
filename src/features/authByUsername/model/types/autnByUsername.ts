@@ -3,4 +3,5 @@ export interface AuthByUsernameSchema {
     password: string;
     isLoading: boolean;
     error?: string;
+    isSuccess: boolean;
 }
