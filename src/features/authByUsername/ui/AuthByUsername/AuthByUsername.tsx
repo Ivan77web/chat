@@ -2,12 +2,11 @@ import { useSelector } from "react-redux"
 import { getAuthDataUsername, getAuthDataPassword, getAuthDataIsLoading, getAuthDataError, getAuthDataIsSuccess } from "../../model/selectors/authByUsernameSelectors"
 import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { authByUsernameActions, authByUsernameReducer } from "../../model/slice/authByUsernameSlice";
+import { authByUsernameActions } from "../../model/slice/authByUsernameSlice";
 import cl from './AuthByUsername.module.scss';
 import { HStack, VStack } from "@/shared/ui/Stack";
-import { DynamicModuleLoader, ReducersList } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { authByUsername } from "../../model/services/authByUsername";
-import { Group, Header, Div, Headline, Cell, Input, Button, ScreenSpinner, FormItem } from "@vkontakte/vkui";
+import { Div, Headline, Cell, Input, Button, FormItem } from "@vkontakte/vkui";
 import { DynamicLoader } from "@/shared/ui/DynamicLoader";
 
 type Status = 'default' | 'error' | 'valid';

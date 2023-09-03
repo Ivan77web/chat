@@ -68,8 +68,8 @@ export const Input = memo((props: InputProps) => {
     };
 
     const input = (
-        <div className={classNames(cl.InputWrapper, mods, [className, cl[size]])}>
-            <div className={cl.addonLeft}>{addonLeft}</div>
+        <div className={classNames(cl.InputWrapper, mods, [className, cl[size]])} >
+            <div className={cl.addonLeft} >{addonLeft}</div>
             <input
                 ref={ref}
                 type={type}
@@ -82,7 +82,9 @@ export const Input = memo((props: InputProps) => {
                 placeholder={placeholder}
                 {...otherProps}
             />
-            <div className={cl.addonRight}>{addonRight}</div>
+            <div
+                className={cl.addonRight}
+            >{addonRight}</div>
         </div>
     );
 

@@ -29,8 +29,9 @@ export const buildLoaders = (options: BuildProps): webpack.RuleSetRule[] => {
     }
 
     const cssLoader = {
-        test: /\.s[ac]ss$/i,
+        test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+
     }
 
     return [

@@ -1,4 +1,3 @@
-import { HStack } from "@/shared/ui/Stack"
 import { Group, Div, Button } from "@vkontakte/vkui"
 import cl from './RegistrationButton.module.scss';
 

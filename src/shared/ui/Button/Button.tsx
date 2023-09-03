@@ -51,9 +51,13 @@ export const Button = forwardRef((props: ButtonProps, ref: ForwardedRef<HTMLButt
             {...otherProps}
             ref={ref}
         >
-            <div className={cl.addonLeft}>{addonLeft}</div>
+            <div className={cl.addonLeft}>
+                {addonLeft}
+            </div>
             {children}
-            <div className={cl.addonRight}>{addonRight}</div>
+            <div className={cl.addonRight}>
+                {addonRight}
+            </div>
         </button>
     );
 });
