@@ -1,6 +1,7 @@
 import { getUserInited } from "@/entities/User";
 import { Logout } from "@/features/logout";
 import { HStack } from "@/shared/ui/Stack";
+import { ProfilePopover } from "@/widgets/profilePopover";
 import {
     View,
     Panel,
@@ -20,7 +21,8 @@ export const Navbar = () => {
 
                         {
                             auth && (
-                                <Logout />
+                                // <Logout />
+                                <ProfilePopover/>
                             )
                         }
                     </HStack>

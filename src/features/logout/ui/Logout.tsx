@@ -15,6 +15,8 @@ export const Logout = () => {
         <Button
             onClick={onLogout}
             size="l"
+            mode="secondary"
+            stretched
         >
             Выйти
         </Button>
