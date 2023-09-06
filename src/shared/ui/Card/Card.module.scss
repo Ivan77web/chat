@@ -2,12 +2,16 @@
     padding: 24px;
 }
 
-.normal {
-    background: var(--dark-bg);
+.dark{
+    background: #ebedf0;
+    border-radius: 12px;
+    color: black;
 }
 
-.light {
-    background: var(--light-bg);
+.light{
+    background: #fff;
+    border-radius: 12px;
+    color: black;
 }
 
 .outlined {

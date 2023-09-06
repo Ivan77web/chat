@@ -7,9 +7,9 @@ import { AxiosInstance } from "axios";
 
 export interface StateSchema {
     user: UserSchema,
-
+    dialogs: DialogsSchema,
+    
     authData?: AuthByUsernameSchema,
-    dialogs?: DialogsSchema,
 }
 
 export type StateSchemaKey = keyof StateSchema;

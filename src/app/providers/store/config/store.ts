@@ -3,10 +3,12 @@ import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 import { $api } from '@/shared/api/api';
 import { userReducer } from '@/entities/User';
+import { dialogsReducer } from '@/entities/Dialog';
 
 export const createReduxStore = (initialState?: StateSchema) => {
     const rootReducers: ReducersMapObject<StateSchema> = {
-        user: userReducer
+        user: userReducer,
+        dialogs: dialogsReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
