@@ -61,6 +61,31 @@ server.post('/login', (req, res) => {
     }
 });
 
+// Получение диалогов
+server.post('/getDialog', (req, res) => {
+    try {
+        const ids = req.body;
+
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const { dialogs = [] } = db;
+
+        const resDialogs = [];
+
+        ids.map(id => {
+            const dialog = dialogs.find(
+                (dialog) => dialog.id === id,
+            );
+
+            resDialogs.push(dialog);
+        })
+
+        return res.json(resDialogs);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: e.message });
+    }
+});
+
 // проверяем, авторизован ли пользователь
 server.use((req, res, next) => {
     if (!req.headers.authorization) {

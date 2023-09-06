@@ -24,7 +24,24 @@
   ],
   "dialogs": [
     {
-      "dialogId": "1",
+      "id": "1",
+      "participants": [
+        "1",
+        "2"
+      ],
+      "messages": [
+        {
+          "autorId": "1",
+          "message": "Привет, меня зовут Ваня!"
+        },
+        {
+          "autorId": "2",
+          "message": "Привет, Ваня, а меня зовут не Ваня!"
+        }
+      ]
+    },
+    {
+      "id": "2",
       "messages": [
         {
           "autorId": "1",

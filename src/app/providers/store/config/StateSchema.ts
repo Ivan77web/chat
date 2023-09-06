@@ -1,3 +1,4 @@
+import { DialogsSchema } from "@/entities/Dialog";
 import { UserSchema } from "@/entities/User";
 import { AuthByUsernameSchema } from "@/features/authByUsername/model/types/autnByUsername";
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
@@ -8,6 +9,7 @@ export interface StateSchema {
     user: UserSchema,
 
     authData?: AuthByUsernameSchema,
+    dialogs?: DialogsSchema,
 }
 
 export type StateSchemaKey = keyof StateSchema;
