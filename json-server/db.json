@@ -1,22 +1,40 @@
 {
-  "counter": {
-    "value": 66
-  },
   "users": [
     {
       "id": "1",
       "username": "Ivan",
-      "password": "123"
+      "password": "123",
+      "dialogs": [
+        "1"
+      ]
     },
     {
       "id": "2",
       "username": "Moderator",
-      "password": "123"
+      "password": "123",
+      "dialogs": [
+        "1"
+      ]
     },
     {
       "id": "3",
       "username": "Default user",
       "password": "123"
+    }
+  ],
+  "dialogs": [
+    {
+      "dialogId": "1",
+      "messages": [
+        {
+          "autorId": "1",
+          "message": "Привет, меня зовут Ваня!"
+        },
+        {
+          "autorId": "2",
+          "message": "Привет, Ваня, а меня зовут не Ваня!"
+        }
+      ]
     }
   ]
 }

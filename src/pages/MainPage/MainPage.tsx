@@ -1,20 +1,16 @@
-import { Counter } from "@/entities/Counter"
-import { AuthByUsername } from "@/features/authByUsername"
-import { Logout } from "@/features/logout"
-import { classNames } from "@/shared/lib/classNames/classNames"
 import { Page } from "@/shared/ui/Page/Page"
 import { HStack } from "@/shared/ui/Stack"
-import { View, Panel, PanelHeader } from "@vkontakte/vkui"
-import { useEffect } from "react"
+import { DialogContainer } from "@/widgets/dialogContainer"
+import { DialogsList } from "@/widgets/dialogsList"
 
 const MainPage = () => {
     return (
-        // <div className={classNames('', {}, [])}>
-        //     Main page
-        // </div>
-
         <Page>
-            Main page
+            <HStack justify="between" gap="16" maxHeight isStretch>
+                <DialogsList />
+
+                <DialogContainer />
+            </HStack>
         </Page>
     )
 }

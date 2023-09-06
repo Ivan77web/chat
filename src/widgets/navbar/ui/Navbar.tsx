@@ -8,26 +8,29 @@ import {
     PanelHeader,
 } from "@vkontakte/vkui";
 import { useSelector } from "react-redux";
+import cl from './Navbar.module.scss';
 
 export const Navbar = () => {
     const auth = useSelector(getUserInited);
 
     return (
-        <View activePanel="header">
-            <Panel id="header">
-                <PanelHeader>
-                    <HStack justify="between">
-                        Chat
+        <div className={cl.navbar}>
+            <View activePanel="header">
+                <Panel id="header">
+                    <PanelHeader>
+                        <HStack justify="between">
+                            Chat
 
-                        {
-                            auth && (
-                                // <Logout />
-                                <ProfilePopover/>
-                            )
-                        }
-                    </HStack>
-                </PanelHeader>
-            </Panel>
-        </View>
+                            {
+                                auth && (
+                                    // <Logout />
+                                    <ProfilePopover />
+                                )
+                            }
+                        </HStack>
+                    </PanelHeader>
+                </Panel>
+            </View>
+        </div>
     )
 }

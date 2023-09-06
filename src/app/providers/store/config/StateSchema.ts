@@ -1,4 +1,3 @@
-import { CounterSchema } from "@/entities/Counter";
 import { UserSchema } from "@/entities/User";
 import { AuthByUsernameSchema } from "@/features/authByUsername/model/types/autnByUsername";
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
@@ -8,7 +7,6 @@ import { AxiosInstance } from "axios";
 export interface StateSchema {
     user: UserSchema,
 
-    counter?: CounterSchema,
     authData?: AuthByUsernameSchema,
 }
 
