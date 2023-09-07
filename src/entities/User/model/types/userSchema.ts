@@ -3,6 +3,7 @@ export interface User {
     username: string;
     password: string;
     dialogs?: string[];
+    avatar?: string;
 }
 
 export interface UserSchema {
