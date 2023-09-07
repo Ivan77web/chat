@@ -1,6 +1,5 @@
 import { Avatar, FormItem, Group, Header, Input, Spinner } from "@vkontakte/vkui"
 import cl from './DialogContainer.module.scss';
-import { ListDialogs } from "@/widgets/dialogsList/ui/ListDialogs/ListDialogs";
 import { HStack } from "@/shared/ui/Stack";
 import { DialogBlock } from "../DialogBlock/DialogBlock";
 import { useSelector } from "react-redux";
