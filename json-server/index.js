@@ -17,7 +17,7 @@ server.use(async (req, res, next) => {
     next();
 });
 
-// Эндпоинт для логина
+// Эндпоинт для поиска юзера
 server.post('/findUser', (req, res) => {
     try {
         const { userId } = req.body;
@@ -30,6 +30,45 @@ server.post('/findUser', (req, res) => {
 
         if (userFromBd) {
             return res.json(userFromBd);
+        }
+
+        return res.status(403).json({ message: 'User not found' });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: e.message });
+    }
+});
+
+// Эндпоинт для создания данных по конкретному диалогу
+server.post('/getDataForCurrentDialog', (req, res) => {
+    try {
+        const idDialog = req.body;
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const { dialogs = [] } = db;
+        const { users = [] } = db;
+
+        const dialogFromDB = dialogs.find(
+            (dialog) => dialog.id === idDialog,
+        );
+
+        const usersFromDB = [];
+
+        dialogFromDB.participants.map(userId => {
+            users.map(user => {
+                if (user.id === userId) {
+                    usersFromDB.push(user);
+                }
+            })
+        })
+
+        if (usersFromDB && dialogFromDB) {
+            const result = {
+                id: idDialog,
+                dialog: dialogFromDB,
+                users: usersFromDB,
+            }
+
+            return res.json(result);
         }
 
         return res.status(403).json({ message: 'User not found' });

@@ -7,12 +7,16 @@ import { Dialog, getDialogsData } from '@/entities/Dialog';
 import { Spinner } from '@vkontakte/vkui';
 import { MessageBlock } from '../MessageBlock/MessageBlock';
 import { VStack } from '@/shared/ui/Stack';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { User } from '@/entities/User';
+import { getUserId } from '@/entities/User/model/selectors/userSelectors';
 
 interface DialogBlockProps {
     className?: string;
 }
 
 export const DialogBlock = memo(({ className }: DialogBlockProps) => {
+    const dispatch = useAppDispatch();
     const currentDialogId = useSelector(getCurrentDialogId);
     const allDialogs = useSelector(getDialogsData);
     const [currentDialog, setCurrentDialog] = useState<Dialog | null>(null);
@@ -34,7 +38,12 @@ export const DialogBlock = memo(({ className }: DialogBlockProps) => {
     return (
         <VStack gap='32' className={classNames(cl.DialogBlock, {}, [className])}>
             {
-                currentDialog.messages.map((mes, index) => <MessageBlock key={index} messageItem={mes} />)
+                currentDialog.messages.map((mes, index) =>
+                    <MessageBlock
+                        key={index}
+                        messageItem={mes}
+                    />
+                )
             }
         </VStack>
     );

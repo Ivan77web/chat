@@ -5,7 +5,7 @@ import { Avatar } from "@vkontakte/vkui";
 import cl from './DialogCard.module.scss';
 import { useCallback } from "react";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { currentDialogsActions } from "@/entities/CurrentDialog";
+import { currentDialogsActions, getDataForCurrentDialog } from "@/entities/CurrentDialog";
 
 interface DialogCardProps {
     dialog: Dialog,
@@ -16,7 +16,7 @@ export const DialogCard = ({ dialog }: DialogCardProps) => {
     const lastMessage = dialog.messages[dialog.messages.length - 1];
 
     const onChangeDialog = useCallback((id: string) => {
-        dispatch(currentDialogsActions.setId(id))
+        dispatch(getDataForCurrentDialog({idDialog: id}))
     }, [dispatch])
 
     return (

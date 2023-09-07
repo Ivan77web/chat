@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cl from './MessageBlock.module.scss';
 import { Message } from '@/entities/Dialog';
