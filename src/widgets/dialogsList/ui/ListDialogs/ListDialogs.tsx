@@ -18,17 +18,8 @@ export const ListDialogs = () => {
     const dialogsId = useSelector(getUserDialogsId);
 
     useEffect(() => {
-        console.log(1);
-        console.log(isLoading);
-
-
         dispatch(getDialogs(dialogsId))
     }, []);
-
-    useEffect(() => {
-        console.log(isLoading);
-
-    }, [isLoading])
 
     if (error) {
         return (

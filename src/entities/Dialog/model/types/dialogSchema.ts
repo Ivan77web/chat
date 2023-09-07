@@ -1,4 +1,4 @@
-interface Message {
+export interface Message {
     autorId: string;
     message: string;
     date: string;

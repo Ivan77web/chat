@@ -1,6 +1,7 @@
+import { CurrentDialogSchema } from "@/entities/CurrentDialog";
 import { DialogsSchema } from "@/entities/Dialog";
 import { UserSchema } from "@/entities/User";
-import { AuthByUsernameSchema } from "@/features/authByUsername/model/types/autnByUsername";
+import { AuthByUsernameSchema } from "@/features/authByUsername";
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { AxiosInstance } from "axios";
@@ -8,7 +9,8 @@ import { AxiosInstance } from "axios";
 export interface StateSchema {
     user: UserSchema,
     dialogs: DialogsSchema,
-    
+    currentDialog: CurrentDialogSchema,
+
     authData?: AuthByUsernameSchema,
 }
 
