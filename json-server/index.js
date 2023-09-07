@@ -42,7 +42,7 @@ server.post('/findUser', (req, res) => {
 // Эндпоинт для создания данных по конкретному диалогу
 server.post('/getDataForCurrentDialog', (req, res) => {
     try {
-        const idDialog = req.body;
+        const {idDialog} = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
         const { dialogs = [] } = db;
         const { users = [] } = db;

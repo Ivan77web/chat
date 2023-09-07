@@ -7,29 +7,47 @@ import { Dialog, getDialogsData } from '@/entities/Dialog';
 import { Spinner } from '@vkontakte/vkui';
 import { MessageBlock } from '../MessageBlock/MessageBlock';
 import { VStack } from '@/shared/ui/Stack';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { User } from '@/entities/User';
-import { getUserId } from '@/entities/User/model/selectors/userSelectors';
+import { getCurrentDialogDialog, getCurrentDialogError, getCurrentDialogIsLoading } from '@/entities/CurrentDialog/model/selectors/currentDialogSelectors';
 
 interface DialogBlockProps {
     className?: string;
 }
 
 export const DialogBlock = memo(({ className }: DialogBlockProps) => {
-    const dispatch = useAppDispatch();
-    const currentDialogId = useSelector(getCurrentDialogId);
-    const allDialogs = useSelector(getDialogsData);
-    const [currentDialog, setCurrentDialog] = useState<Dialog | null>(null);
+    // const currentDialogId = useSelector(getCurrentDialogId);
+    // const allDialogs = useSelector(getDialogsData);
+    const dialog = useSelector(getCurrentDialogDialog);
+    const dialogIsLoading = useSelector(getCurrentDialogIsLoading);
+    const dialogError = useSelector(getCurrentDialogError);
+    // const [currentDialog, setCurrentDialog] = useState<Dialog | null>(null);
 
-    useEffect(() => {
-        allDialogs.map(dialog => {
-            if (dialog.id === currentDialogId) {
-                setCurrentDialog(dialog);
-            }
-        })
-    }, [currentDialogId, allDialogs])
+    // useEffect(() => {
+    //     allDialogs.map(dialog => {
+    //         if (dialog.id === currentDialogId) {
+    //             setCurrentDialog(dialog);
+    //         }
+    //     })
+    // }, [currentDialogId, allDialogs])
 
-    if (currentDialogId === null || currentDialog === null) {
+    // if (currentDialogId === null || currentDialog === null) {
+    //     return (
+    //         <p>Диалог не выбран</p>
+    //     )
+    // }
+
+    if (dialogIsLoading) {
+        return (
+            <Spinner size='large' />
+        )
+    }
+
+    if (dialogError) {
+        return (
+            <p>Произошла ошибка</p>
+        )
+    }
+
+    if (dialog === undefined) {
         return (
             <p>Диалог не выбран</p>
         )
@@ -38,7 +56,7 @@ export const DialogBlock = memo(({ className }: DialogBlockProps) => {
     return (
         <VStack gap='32' className={classNames(cl.DialogBlock, {}, [className])}>
             {
-                currentDialog.messages.map((mes, index) =>
+                dialog.messages.map((mes, index) =>
                     <MessageBlock
                         key={index}
                         messageItem={mes}
