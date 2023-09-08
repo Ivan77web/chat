@@ -5,12 +5,14 @@ import { $api } from '@/shared/api/api';
 import { userReducer } from '@/entities/User';
 import { dialogsReducer } from '@/entities/Dialog';
 import { currentDialogsReducer } from '@/entities/CurrentDialog';
+import { newMessageReducer } from '@/entities/NewMessage';
 
 export const createReduxStore = (initialState?: StateSchema) => {
     const rootReducers: ReducersMapObject<StateSchema> = {
         user: userReducer,
         dialogs: dialogsReducer,
         currentDialog: currentDialogsReducer,
+        newMessage: newMessageReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);

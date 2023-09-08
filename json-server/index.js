@@ -10,12 +10,12 @@ server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
 
 // Нужно для небольшой задержки, чтобы запрос проходил не мгновенно, имитация реального апи
-server.use(async (req, res, next) => {
-    await new Promise((res) => {
-        setTimeout(res, 1500);
-    });
-    next();
-});
+// server.use(async (req, res, next) => {
+//     await new Promise((res) => {
+//         setTimeout(res, 1500);
+//     });
+//     next();
+// });
 
 // Эндпоинт для поиска юзера
 server.post('/findUser', (req, res) => {
@@ -42,7 +42,7 @@ server.post('/findUser', (req, res) => {
 // Эндпоинт для создания данных по конкретному диалогу
 server.post('/getDataForCurrentDialog', (req, res) => {
     try {
-        const {idDialog} = req.body;
+        const { idDialog } = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
         const { dialogs = [] } = db;
         const { users = [] } = db;
@@ -119,6 +119,45 @@ server.post('/getDialog', (req, res) => {
         })
 
         return res.json(resDialogs);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: e.message });
+    }
+});
+
+// Отправка сообщения
+server.post('/sendMessage', (req, res) => {
+    try {
+        const {
+            mes,
+            autorID,
+            date,
+            time,
+            currentDialogId,
+        } = req.body;
+
+        // const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        let db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        // const { dialogs = [] } = db;
+
+        let newCurrentDialog = undefined;
+
+        db.dialogs.map((dialog, index) => {
+            if (dialog.id === currentDialogId) {
+                newCurrentDialog = dialog;
+
+                db.dialogs[index].messages.push({
+                    autorId: autorID,
+                    message: mes,
+                    date: date,
+                    time: time,
+                })
+            }
+        })
+
+        fs.writeFileSync(path.resolve(__dirname, 'db.json'), JSON.stringify(db), 'UTF-8')
+
+        return res.json(newCurrentDialog);
     } catch (e) {
         console.log(e);
         return res.status(500).json({ message: e.message });

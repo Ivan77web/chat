@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cl from './DialogBlock.module.scss';
 import { useSelector } from 'react-redux';
@@ -21,6 +21,16 @@ export const DialogBlock = memo(({ className }: DialogBlockProps) => {
     const dialogIsLoading = useSelector(getCurrentDialogIsLoading);
     const dialogError = useSelector(getCurrentDialogError);
     const users = useSelector(getCurrentDialogUsers);
+    // const divRef = useRef<HTMLDivElement>(null);
+
+    // useEffect(() => {
+    //     if (divRef.current) {
+    //         console.log(1);
+            
+
+    //         divRef.current.scrollBy(0, 100000)
+    //     }
+    // }, [divRef])
 
     if (dialogIsLoading) {
         return (
@@ -47,16 +57,18 @@ export const DialogBlock = memo(({ className }: DialogBlockProps) => {
     }
 
     return (
-        <VStack gap='32' className={classNames(cl.DialogBlock, {}, [className])}>
-            {
-                dialog.messages.map((mes, index) =>
-                    <MessageBlock
-                        key={index}
-                        messageItem={mes}
-                        user={mes.autorId === users[0].id ? users[0] : users[1]}
-                    />
-                )
-            }
-        </VStack>
+        // <div ref={divRef}>
+            <VStack gap='32' className={classNames(cl.DialogBlock, {}, [className])}>
+                {
+                    dialog.messages.map((mes, index) =>
+                        <MessageBlock
+                            key={index}
+                            messageItem={mes}
+                            user={mes.autorId === users[0].id ? users[0] : users[1]}
+                        />
+                    )
+                }
+            </VStack>
+        // </div>
     );
 });

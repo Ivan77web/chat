@@ -1,5 +1,6 @@
 import { CurrentDialogSchema } from "@/entities/CurrentDialog";
 import { DialogsSchema } from "@/entities/Dialog";
+import { NewMessageSchema } from "@/entities/NewMessage";
 import { UserSchema } from "@/entities/User";
 import { AuthByUsernameSchema } from "@/features/authByUsername";
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
@@ -10,6 +11,7 @@ export interface StateSchema {
     user: UserSchema,
     dialogs: DialogsSchema,
     currentDialog: CurrentDialogSchema,
+    newMessage: NewMessageSchema,
 
     authData?: AuthByUsernameSchema,
 }

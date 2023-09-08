@@ -8,6 +8,7 @@ import { HeaderBlock } from "../HeaderBlock/HeaderBlock";
 import { getCurrentDialogDialog, getCurrentDialogIsLoading } from "@/entities/CurrentDialog/model/selectors/currentDialogSelectors";
 import { ReactNode, useEffect, useState } from "react";
 import { Card } from "@/shared/ui/Card";
+import { NewMessage } from "@/entities/NewMessage";
 
 export const DialogContainer = () => {
     const isLoadingDialogs = useSelector(getDialogsIsLoading);
@@ -36,10 +37,7 @@ export const DialogContainer = () => {
                     </Card>
 
                     <Card max>
-                        <Input
-                            id="searchDialog"
-                            type="text"
-                        />
+                        <NewMessage />
                     </Card>
                 </VStack>
             )

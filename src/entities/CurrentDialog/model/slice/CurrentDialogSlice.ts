@@ -1,22 +1,29 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CurrentDialogSchema } from "../types/CurrentDialogSchema";
 import { getDataForCurrentDialog } from "../services/getDataForCurrentDialog";
+import { Dialog } from "@/entities/Dialog";
 
 const initialState: CurrentDialogSchema = {
     isLoading: false,
-    data: null
+    data: {
+        id: null,
+        dialog: undefined,
+    },
 }
 
 export const currentDialogsSlice = createSlice({
     name: 'currentDialog',
     initialState,
-    reducers: {},
+    reducers: {
+        setDialog: (state, action: PayloadAction<Dialog>) => {
+            state.data.dialog = action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getDataForCurrentDialog.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
-                state.data = null;
             })
             .addCase(getDataForCurrentDialog.fulfilled, (state, action) => {
                 state.error = undefined;
@@ -26,7 +33,6 @@ export const currentDialogsSlice = createSlice({
             .addCase(getDataForCurrentDialog.rejected, (state, action) => {
                 state.error = action.payload;
                 state.isLoading = false;
-                state.data = null;
             });
     },
 })

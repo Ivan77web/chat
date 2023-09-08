@@ -8,7 +8,7 @@ export interface CurrentDialog {
 }
 
 export interface CurrentDialogSchema {
-    data: CurrentDialog | null;
+    data: CurrentDialog;
     isLoading: boolean;
     error?: string;
 }
