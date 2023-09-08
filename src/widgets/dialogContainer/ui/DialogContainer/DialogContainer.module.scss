@@ -1,3 +1,10 @@
 .wrapper{
     width: 100%;
 }
+
+.dialogBlock{
+    height: 100%;
+    height: calc(100% - 104px);
+    overflow-y: scroll;
+    background: red;
+}

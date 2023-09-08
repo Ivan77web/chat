@@ -4,6 +4,7 @@ import { getUserInited } from "./model/selectors/userSelectors";
 import { userActions } from "./model/slice/UserSlice";
 import { getUserAvatar } from "./model/selectors/userSelectors";
 import { User } from "./model/types/userSchema";
+import { getUserId } from "./model/selectors/userSelectors";
 
 export type {
     UserSchema,
@@ -15,4 +16,5 @@ export {
     getUserInited,
     userActions,
     getUserAvatar,
+    getUserId,
 }

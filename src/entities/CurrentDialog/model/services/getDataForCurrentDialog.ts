@@ -12,9 +12,6 @@ export const getDataForCurrentDialog = createAsyncThunk<CurrentDialog, getDataFo
     async (idDialog, thunkApi) => {
         const { rejectWithValue, extra } = thunkApi;
 
-        console.log(idDialog);
-        
-
         try {
             const response = await extra.api.post('/getDataForCurrentDialog', idDialog);
 

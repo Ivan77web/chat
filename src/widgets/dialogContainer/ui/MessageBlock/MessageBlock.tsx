@@ -3,13 +3,23 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cl from './MessageBlock.module.scss';
 import { Message } from '@/entities/Dialog';
 import { HStack, VStack } from '@/shared/ui/Stack';
+import { User } from '@/entities/User';
+import { Avatar } from '@vkontakte/vkui';
+import { Icon36UserCircleOutline } from '@vkontakte/icons';
 
 interface MessageBlockProps {
     className?: string;
     messageItem: Message;
+    user: User
 }
 
-export const MessageBlock = memo(({ className, messageItem }: MessageBlockProps) => {
+export const MessageBlock = memo((props: MessageBlockProps) => {
+    const {
+        className,
+        messageItem,
+        user,
+    } = props;
+
     const {
         autorId,
         date,
@@ -21,10 +31,26 @@ export const MessageBlock = memo(({ className, messageItem }: MessageBlockProps)
         <VStack
             className={classNames(cl.MessageBlock, {}, [className])}
             gap='16'
+            max
         >
-            <HStack gap='8' max>
-                {autorId}
-                {time}
+            <HStack justify='between' max>
+                <HStack gap='8'>
+                    {
+                        user.avatar
+                            ?
+                            <Avatar src={user.avatar} />
+                            :
+                            <Icon36UserCircleOutline />
+                    }
+                    {
+                        user.username
+                    }
+                </HStack>
+
+                <VStack>
+                    <p>{time}</p>
+                    <p>{date}</p>
+                </VStack>
             </HStack>
 
             {message}
