@@ -1,16 +1,23 @@
 import { getCurrentDialogUsers } from "@/entities/CurrentDialog/model/selectors/currentDialogSelectors";
 import { getUserId } from "@/entities/User";
 import { HStack } from "@/shared/ui/Stack"
-import { FormItem, Avatar } from "@vkontakte/vkui"
-import { useEffect, useState } from "react";
+import { FormItem, Avatar, Button } from "@vkontakte/vkui"
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Icon36UserCircleOutline } from '@vkontakte/icons';
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { currentDialogsActions } from "@/entities/CurrentDialog";
 
 export const HeaderBlock = () => {
+    const dispatch = useAppDispatch();
     const users = useSelector(getCurrentDialogUsers);
     const myId = useSelector(getUserId);;
     const [name, setName] = useState('');
     const [src, setSrc] = useState('');
+
+    const onComeBack = useCallback(() => {
+        dispatch(currentDialogsActions.resetDialog());
+    }, [dispatch])
 
     useEffect(() => {
         if (users) {
@@ -21,7 +28,13 @@ export const HeaderBlock = () => {
 
     return (
         <HStack max justify="between">
-            <p>Назад</p>
+            <Button
+                onClick={onComeBack}
+                mode="tertiary"
+                size="l"
+            >
+                Назад
+            </Button>
             <p>{name}</p>
             {
                 src

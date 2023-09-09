@@ -17,6 +17,9 @@ export const currentDialogsSlice = createSlice({
     reducers: {
         setDialog: (state, action: PayloadAction<Dialog>) => {
             state.data.dialog = action.payload;
+        },
+        resetDialog: (state) => {
+            state.data.dialog = undefined;
         }
     },
     extraReducers: (builder) => {
