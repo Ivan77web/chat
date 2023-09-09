@@ -1,0 +1,11 @@
+.card{
+    cursor: pointer;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.titleMessage{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
