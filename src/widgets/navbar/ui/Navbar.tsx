@@ -1,11 +1,12 @@
 import { getUserInited } from "@/entities/User";
 import { Logout } from "@/features/logout";
-import { HStack } from "@/shared/ui/Stack";
+import { HStack, VStack } from "@/shared/ui/Stack";
 import { ProfilePopover } from "@/widgets/profilePopover";
 import {
     View,
     Panel,
     PanelHeader,
+    Card,
 } from "@vkontakte/vkui";
 import { useSelector } from "react-redux";
 import cl from './Navbar.module.scss';
@@ -15,22 +16,17 @@ export const Navbar = () => {
 
     return (
         <div className={cl.navbar}>
-            <View activePanel="header">
-                <Panel id="header">
-                    <PanelHeader>
-                        <HStack justify="between">
-                            Chat
+            <HStack justify="between" max>
+                <p className={cl.title}>
+                    Chat
+                </p>
 
-                            {
-                                auth && (
-                                    // <Logout />
-                                    <ProfilePopover />
-                                )
-                            }
-                        </HStack>
-                    </PanelHeader>
-                </Panel>
-            </View>
+                {
+                    auth && (
+                        <ProfilePopover />
+                    )
+                }
+            </HStack>
         </div>
     )
 }

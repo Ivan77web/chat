@@ -1,7 +1,7 @@
 import { Div, Button, FormLayout, FormItem, Input, Checkbox, Avatar } from "@vkontakte/vkui";
 import { Popover } from "@vkontakte/vkui/dist/components/Popover/Popover";
 import React, { Fragment, useState } from "react";
-import { Icon36UserCircleOutline } from '@vkontakte/icons';
+import { Icon48UserRectangleHorizontalOutline } from '@vkontakte/icons';
 import { Logout } from "@/features/logout";
 import { useSelector } from "react-redux";
 import { getUserAvatar } from "@/entities/User";
@@ -38,7 +38,7 @@ export const ProfilePopover = () => {
                     ?
                     <Avatar src={avatar}/>
                     :
-                    <Icon36UserCircleOutline />
+                    <Icon48UserRectangleHorizontalOutline />
                 }
             </Popover>
         </Fragment>

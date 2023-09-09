@@ -27,7 +27,10 @@ export const HeaderBlock = () => {
     }, [users])
 
     return (
-        <HStack max justify="between">
+        <HStack
+            max
+            justify="between"
+        >
             <Button
                 onClick={onComeBack}
                 mode="tertiary"
