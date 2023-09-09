@@ -16,17 +16,19 @@ export const Navbar = () => {
 
     return (
         <div className={cl.navbar}>
-            <HStack justify="between" max>
-                <p className={cl.title}>
-                    Chat
-                </p>
+            <VStack maxHeight justify="center" align="center">
+                <HStack justify="between" max>
+                    <p className={cl.title}>
+                        Chat
+                    </p>
 
-                {
-                    auth && (
-                        <ProfilePopover />
-                    )
-                }
-            </HStack>
+                    {
+                        auth && (
+                            <ProfilePopover />
+                        )
+                    }
+                </HStack>
+            </VStack>
         </div>
     )
 }
