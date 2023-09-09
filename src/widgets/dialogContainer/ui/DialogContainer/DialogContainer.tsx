@@ -10,6 +10,14 @@ import { ReactNode, useEffect, useState } from "react";
 import { Card } from "@/shared/ui/Card";
 import { NewMessage } from "@/entities/NewMessage";
 
+const textDialogNotSelected = (
+    <VStack maxHeight justify='center'>
+        <HStack max justify='center'>
+            <p>Диалог не выбран</p>
+        </HStack>
+    </VStack>
+)
+
 export const DialogContainer = () => {
     const isLoadingDialogs = useSelector(getDialogsIsLoading);
     const currentDialogIdLoading = useSelector(getCurrentDialogIsLoading);
@@ -20,7 +28,7 @@ export const DialogContainer = () => {
         if (isLoadingDialogs || currentDialogIdLoading) {
             setContent(<Spinner size="large" />);
         } else if (!dialog) {
-            setContent(<p>Диалог не выбран</p>);
+            setContent(textDialogNotSelected);
         } else {
             setContent(
                 <VStack

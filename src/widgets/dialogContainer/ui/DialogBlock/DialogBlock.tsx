@@ -4,7 +4,7 @@ import cl from './DialogBlock.module.scss';
 import { useSelector } from 'react-redux';
 import { Spinner } from '@vkontakte/vkui';
 import { MessageBlock } from '../MessageBlock/MessageBlock';
-import { VStack } from '@/shared/ui/Stack';
+import { HStack, VStack } from '@/shared/ui/Stack';
 import {
     getCurrentDialogDialog,
     getCurrentDialogError,
@@ -26,7 +26,7 @@ export const DialogBlock = memo(({ className }: DialogBlockProps) => {
     // useEffect(() => {
     //     if (divRef.current) {
     //         console.log(1);
-            
+
 
     //         divRef.current.scrollBy(0, 100000)
     //     }
@@ -58,17 +58,17 @@ export const DialogBlock = memo(({ className }: DialogBlockProps) => {
 
     return (
         // <div ref={divRef}>
-            <VStack gap='32' className={classNames(cl.DialogBlock, {}, [className])}>
-                {
-                    dialog.messages.map((mes, index) =>
-                        <MessageBlock
-                            key={index}
-                            messageItem={mes}
-                            user={mes.autorId === users[0].id ? users[0] : users[1]}
-                        />
-                    )
-                }
-            </VStack>
+        <VStack gap='32' className={classNames(cl.DialogBlock, {}, [className])}>
+            {
+                dialog.messages.map((mes, index) =>
+                    <MessageBlock
+                        key={index}
+                        messageItem={mes}
+                        user={mes.autorId === users[0].id ? users[0] : users[1]}
+                    />
+                )
+            }
+        </VStack>
         // </div>
     );
 });
