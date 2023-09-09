@@ -65,6 +65,12 @@ const AuthByUsername = () => {
         return validate
     }, [username, password])
 
+    const onKeyDown = useCallback((key: string) => {
+        if (key === 'Enter') {
+            onLogin();
+        }
+    }, [username, password])
+
     useEffect(() => {
         if (error) {
             setStatusPassword('error');
@@ -116,6 +122,7 @@ const AuthByUsername = () => {
                                 type="password"
                                 value={password}
                                 onChange={(e) => onChangePassword(e.target.value)}
+                                onKeyDown={(e) => onKeyDown(e.key)}
                             />
                         </FormItem>
 
