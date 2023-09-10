@@ -17,6 +17,7 @@ interface DialogBlockProps {
 }
 
 export const DialogBlock = memo(({ className }: DialogBlockProps) => {
+    const messagesContainerRef = useRef<HTMLDivElement | null>(null);
     const dialog = useSelector(getCurrentDialogDialog);
     const dialogIsLoading = useSelector(getCurrentDialogIsLoading);
     const dialogError = useSelector(getCurrentDialogError);
@@ -31,6 +32,19 @@ export const DialogBlock = memo(({ className }: DialogBlockProps) => {
     //         divRef.current.scrollBy(0, 100000)
     //     }
     // }, [divRef])
+
+    // Функция для прокрутки контейнера вниз
+    const scrollToBottom = () => {
+        if (messagesContainerRef.current) {
+            messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+        }
+    };
+
+    // Прокручиваем контейнер вниз при изменении сообщений
+    useEffect(() => {
+        scrollToBottom();
+    }, [dialog]);
+
 
     if (dialogIsLoading) {
         return (
@@ -57,18 +71,21 @@ export const DialogBlock = memo(({ className }: DialogBlockProps) => {
     }
 
     return (
-        // <div ref={divRef}>
-        <VStack gap='32' className={classNames(cl.DialogBlock, {}, [className])}>
-            {
-                dialog.messages.map((mes, index) =>
-                    <MessageBlock
-                        key={index}
-                        messageItem={mes}
-                        user={mes.autorId === users[0].id ? users[0] : users[1]}
-                    />
-                )
-            }
-        </VStack>
-        // </div>
+        <div
+            ref={messagesContainerRef}
+            className={cl.container}
+        >
+            <VStack gap='32' className={classNames(cl.DialogBlock, {}, [className])}>
+                {
+                    dialog.messages.map((mes, index) =>
+                        <MessageBlock
+                            key={index}
+                            messageItem={mes}
+                            user={mes.autorId === users[0].id ? users[0] : users[1]}
+                        />
+                    )
+                }
+            </VStack>
+        </div>
     );
 });

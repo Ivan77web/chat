@@ -51,27 +51,39 @@ server.post('/getDataForCurrentDialog', (req, res) => {
             (dialog) => dialog.id === idDialog,
         );
 
-        const usersFromDB = [];
+        // const usersFromDB = [];
 
-        dialogFromDB.participants.map(userId => {
-            users.map(user => {
-                if (user.id === userId) {
-                    usersFromDB.push(user);
-                }
-            })
-        })
+        // dialogFromDB.participants.map(userId => {
+        //     users.map(user => {
+        //         if (user.id === userId) {
+        //             usersFromDB.push(user);
+        //         }
+        //     })
+        // })
 
-        if (usersFromDB && dialogFromDB) {
-            const result = {
-                id: idDialog,
-                dialog: dialogFromDB,
-                users: usersFromDB,
-            }
+        // if (usersFromDB && dialogFromDB) {
+        //     const result = {
+        //         id: idDialog,
+        //         dialog: dialogFromDB,
+        //         users: usersFromDB,
+        //     }
 
-            return res.json(result);
+        //     return res.json(result);
+        // }
+
+        const result = {
+            id: idDialog,
+            dialog: dialogFromDB,
+            users: dialogFromDB.participants,
         }
 
-        return res.status(403).json({ message: 'User not found' });
+        return res.json(result);
+
+        // if(dialogFromDB){
+        //     return res.json(dialogFromDB);
+        // }
+
+        // return res.status(403).json({ message: 'User not found' });
     } catch (e) {
         console.log(e);
         return res.status(500).json({ message: e.message });
