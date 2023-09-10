@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/store/config/StateSchema';
 import { CurrentDialog } from '../types/CurrentDialogSchema';
-import { Dialog } from '@/entities/Dialog';
 
 export interface getDataForCurrentDialogProps {
     idDialog: string

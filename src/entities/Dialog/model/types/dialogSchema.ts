@@ -1,3 +1,5 @@
+import { User } from "@/entities/User";
+
 export interface Message {
     autorId: string;
     message: string;
@@ -7,12 +9,13 @@ export interface Message {
 
 export interface Dialog {
     id: string;
-    participants: string[];
+    participants: User[];
     messages: Message[];
 }
 
 export interface DialogsSchema {
     dialogs?: Dialog[],
+    filteredDialogs?: Dialog[],
     error?: string,
     isLoading: boolean
 }

@@ -4,7 +4,22 @@
     margin-bottom: 4px;
 }
 
+.card:hover{
+    background: #dadddf;
+    transition: all ease .2s;
+}
+
+.body{
+    width: 100%;
+    overflow: hidden;
+}
+
+.avatarBlock{
+    width: 48px;
+}
+
 .titleMessage{
+    width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
