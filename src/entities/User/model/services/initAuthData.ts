@@ -16,7 +16,9 @@ export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
         }
 
         try {
-            const response = await thunkApi.extra.api.post('/findUser', {userId});
+            // dispatch(userActions.setInited());
+
+            const response = await thunkApi.extra.api.post('/findUser', { userId });
 
             if (!response.data) throw new Error();
 

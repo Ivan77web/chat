@@ -10,6 +10,12 @@ import { AppRoot } from '@vkontakte/vkui';
 export const App = () => {
     const dispatch = useAppDispatch();
 
+    // useEffect(() => {
+    //     if (localStorage.getItem(USER_LOCALSTORAGE_KEY)) {
+    //         dispatch(userActions.setInited());
+    //     }
+    // }, [])
+
     useEffect(() => {
         dispatch(initAuthData());
     }, [dispatch]);

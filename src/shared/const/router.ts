@@ -8,5 +8,4 @@ export enum AppRoutes {
 export const getPathMain = () => '/';
 export const getPathAbout = () => '/about';
 export const getPathAuth = () => '/auth';
-export const getPathNotFoundPage = () => '/not_found';
 
