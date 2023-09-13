@@ -1,11 +1,11 @@
 export enum AppRoutes {
     'MAIN',
-    'ABOUT',
+    'REGISTRATION',
     'AUTH',
     'NOT_FOUND_PAGE'
 }
 
 export const getPathMain = () => '/';
-export const getPathAbout = () => '/about';
+export const getPathRegistration = () => '/registration';
 export const getPathAuth = () => '/auth';
 

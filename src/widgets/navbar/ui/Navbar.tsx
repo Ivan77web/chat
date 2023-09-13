@@ -10,6 +10,9 @@ import {
 } from "@vkontakte/vkui";
 import { useSelector } from "react-redux";
 import cl from './Navbar.module.scss';
+import { Link } from "react-router-dom";
+import { AppLink } from "@/shared/ui/AppLink";
+import { getPathMain } from "@/shared/const/router";
 
 export const Navbar = () => {
     const auth = useSelector(getUserInited);
@@ -19,7 +22,9 @@ export const Navbar = () => {
             <VStack maxHeight justify="center" align="center">
                 <HStack justify="between" max>
                     <p className={cl.title}>
-                        Chat
+                        <AppLink to={getPathMain()}>
+                            Chat
+                        </AppLink>
                     </p>
 
                     {

@@ -1,10 +1,9 @@
-import { AboutPage } from "@/pages/AboutPage";
 import AuthPage from "@/pages/AuthPage/ui/AuthPage/AuthPage";
 import { MainPage } from "@/pages/MainPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
-import { AppRoutes, getPathAbout, getPathAuth, getPathMain } from "@/shared/const/router";
+import { RegistrationPage } from "@/pages/RegistrationPage";
+import { AppRoutes, getPathRegistration, getPathAuth, getPathMain } from "@/shared/const/router";
 import { AppRoutesProps } from "@/shared/types/router";
-import { RouteProps } from "react-router";
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -12,17 +11,19 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <MainPage />,
         authOnly: true,
     },
-    [AppRoutes.ABOUT]: {
-        path: getPathAbout(),
-        element: <AboutPage />,
-        authOnly: true,
+    [AppRoutes.REGISTRATION]: {
+        path: getPathRegistration(),
+        element: <RegistrationPage />,
+        authOnly: false,
     },
     [AppRoutes.AUTH]: {
         path: getPathAuth(),
-        element: <AuthPage />
+        element: <AuthPage />,
+        authOnly: false,
     },
     [AppRoutes.NOT_FOUND_PAGE]: {
         path: '*',
-        element: <NotFoundPage />
+        element: <NotFoundPage />,
+        authOnly: false,
     },
 }
