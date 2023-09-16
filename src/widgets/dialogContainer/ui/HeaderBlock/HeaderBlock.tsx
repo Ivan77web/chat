@@ -4,7 +4,7 @@ import { HStack } from "@/shared/ui/Stack"
 import { FormItem, Avatar, Button } from "@vkontakte/vkui"
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Icon36UserCircleOutline } from '@vkontakte/icons';
+import { Icon48UserRectangleHorizontalOutline } from '@vkontakte/icons';
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { currentDialogsActions } from "@/entities/CurrentDialog";
 
@@ -44,7 +44,7 @@ export const HeaderBlock = () => {
                     ?
                     <Avatar src={src} />
                     :
-                    <Icon36UserCircleOutline />
+                    <Icon48UserRectangleHorizontalOutline />
             }
         </HStack>
     )

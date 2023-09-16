@@ -5,7 +5,7 @@ import { Message } from '@/entities/Dialog';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { User } from '@/entities/User';
 import { Avatar } from '@vkontakte/vkui';
-import { Icon36UserCircleOutline } from '@vkontakte/icons';
+import { Icon48UserRectangleHorizontalOutline } from '@vkontakte/icons';
 
 interface MessageBlockProps {
     className?: string;
@@ -40,7 +40,7 @@ export const MessageBlock = memo((props: MessageBlockProps) => {
                             ?
                             <Avatar src={user.avatar} />
                             :
-                            <Icon36UserCircleOutline />
+                            <Icon48UserRectangleHorizontalOutline />
                     }
                     {
                         user.username

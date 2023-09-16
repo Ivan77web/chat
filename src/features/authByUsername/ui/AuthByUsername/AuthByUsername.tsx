@@ -8,13 +8,12 @@ import { HStack, VStack } from "@/shared/ui/Stack";
 import { authByUsername } from "../../model/services/authByUsername";
 import { Div, Headline, Cell, Input, Button, FormItem } from "@vkontakte/vkui";
 import { DynamicLoader } from "@/shared/ui/DynamicLoader";
-
-type Status = 'default' | 'error' | 'valid';
+import { StatusFormItem } from "@/shared/types/statusFormItem";
 
 const AuthByUsername = () => {
     const dispatch = useAppDispatch();
-    const [statusLogin, setStatusLogin] = useState<Status>('default');
-    const [statusPassword, setStatusPassword] = useState<Status>('default');
+    const [statusLogin, setStatusLogin] = useState<StatusFormItem>('default');
+    const [statusPassword, setStatusPassword] = useState<StatusFormItem>('default');
     const username = useSelector(getAuthDataUsername);
     const password = useSelector(getAuthDataPassword);
     const isLoading = useSelector(getAuthDataIsLoading);

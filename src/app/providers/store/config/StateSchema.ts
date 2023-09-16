@@ -3,6 +3,7 @@ import { DialogsSchema } from "@/entities/Dialog";
 import { NewMessageSchema } from "@/entities/NewMessage";
 import { UserSchema } from "@/entities/User";
 import { AuthByUsernameSchema } from "@/features/authByUsername";
+import { RegistrationFormSchema } from "@/features/registrationForm";
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { AxiosInstance } from "axios";
@@ -14,6 +15,7 @@ export interface StateSchema {
     newMessage: NewMessageSchema,
 
     authData?: AuthByUsernameSchema,
+    registrationForm?: RegistrationFormSchema,
 }
 
 export type StateSchemaKey = keyof StateSchema;

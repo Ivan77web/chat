@@ -112,6 +112,40 @@ server.post('/login', (req, res) => {
     }
 });
 
+// Эндпоинт для регистрации
+server.post('/registration', (req, res) => {
+    try {
+        const { avatar, username, password } = req.body;
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+
+        const isFreeUsername = db.users.find(
+            (user) => user.username === username,
+        );
+
+        if (isFreeUsername) {
+            return res.status(403).json({ message: 'Username is busy' });
+        } else {
+            const lastId = Number(db.users[db.users.length - 1].id) + 1;
+
+            db.users.push({
+                id: String(lastId),
+                username,
+                password,
+                avatar,
+            })
+
+            fs.writeFileSync(path.resolve(__dirname, 'db.json'), JSON.stringify(db), 'UTF-8')
+
+            return res.status(200);
+        }
+
+
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: e.message });
+    }
+});
+
 // Получение диалогов
 server.post('/getDialog', (req, res) => {
     try {
