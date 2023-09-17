@@ -9,15 +9,15 @@ export const RegistrationButton = () => {
             className={cl.reg_block}
         >
             <Div>
-                <Button
-                    size="l"
-                    appearance="positive"
-                    stretched
-                >
-                    <AppLink to={getPathRegistration()}>
+                <AppLink to={getPathRegistration()}>
+                    <Button
+                        size="l"
+                        appearance="positive"
+                        stretched
+                    >
                         Зарегистрироваться
-                    </AppLink>
-                </Button>
+                    </Button>
+                </AppLink>
             </Div>
         </Group>
     )

@@ -1,0 +1,1 @@
+export type StatusFormItem = 'default' | 'error' | 'valid';

@@ -22,16 +22,6 @@ export const DialogBlock = memo(({ className }: DialogBlockProps) => {
     const dialogIsLoading = useSelector(getCurrentDialogIsLoading);
     const dialogError = useSelector(getCurrentDialogError);
     const users = useSelector(getCurrentDialogUsers);
-    // const divRef = useRef<HTMLDivElement>(null);
-
-    // useEffect(() => {
-    //     if (divRef.current) {
-    //         console.log(1);
-
-
-    //         divRef.current.scrollBy(0, 100000)
-    //     }
-    // }, [divRef])
 
     // Функция для прокрутки контейнера вниз
     const scrollToBottom = () => {

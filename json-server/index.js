@@ -10,12 +10,12 @@ server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
 
 // Нужно для небольшой задержки, чтобы запрос проходил не мгновенно, имитация реального апи
-// server.use(async (req, res, next) => {
-//     await new Promise((res) => {
-//         setTimeout(res, 1500);
-//     });
-//     next();
-// });
+server.use(async (req, res, next) => {
+    await new Promise((res) => {
+        setTimeout(res, 1500);
+    });
+    next();
+});
 
 // Эндпоинт для поиска юзера
 server.post('/findUser', (req, res) => {
@@ -108,6 +108,39 @@ server.post('/login', (req, res) => {
         return res.status(403).json({ message: 'User not found' });
     } catch (e) {
         console.log(e);
+        return res.status(500).json({ message: e.message });
+    }
+});
+
+// Эндпоинт для регистрации
+server.post('/registration', (req, res) => {
+    try {
+        const { avatar, username, password } = req.body;
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+
+        const isFreeUsername = db.users.find(
+            (user) => user.username === username,
+        );
+
+        if (isFreeUsername) {
+            return res.status(409).json({ message: 'Username is busy' });
+        } else {
+            const lastId = Number(db.users[db.users.length - 1].id) + 1;
+
+            db.users.push({
+                id: String(lastId),
+                username,
+                password,
+                avatar,
+            })
+
+            fs.writeFileSync(path.resolve(__dirname, 'db.json'), JSON.stringify(db), 'UTF-8')
+
+            return res.json(String(lastId));
+        }
+
+
+    } catch (e) {
         return res.status(500).json({ message: e.message });
     }
 });
