@@ -131,11 +131,7 @@ const AuthByUsername = () => {
 
                     </VStack>
 
-                    <HStack gap="4" max justify="between">
-                        <Cell mode="selectable">
-                            Запомнить меня
-                        </Cell>
-
+                    <HStack max justify="end">
                         <Button
                             size="l"
                             onClick={onLogin}
