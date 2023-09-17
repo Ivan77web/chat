@@ -10,9 +10,9 @@ import {
 } from "@vkontakte/vkui";
 import { useSelector } from "react-redux";
 import cl from './Navbar.module.scss';
-import { Link } from "react-router-dom";
 import { AppLink } from "@/shared/ui/AppLink";
 import { getPathMain } from "@/shared/const/router";
+import { Icon56LogoVkColor } from '@vkontakte/icons';
 
 export const Navbar = () => {
     const auth = useSelector(getUserInited);
@@ -23,7 +23,10 @@ export const Navbar = () => {
                 <HStack justify="between" max>
                     <p className={cl.title}>
                         <AppLink to={getPathMain()}>
-                            Chat
+                            <HStack>
+                                <Icon56LogoVkColor/>
+                                Chat
+                            </HStack>
                         </AppLink>
                     </p>
 
