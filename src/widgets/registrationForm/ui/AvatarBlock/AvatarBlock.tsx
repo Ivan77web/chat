@@ -1,36 +1,30 @@
-import { StatusFormItem } from "@/shared/types/statusFormItem";
 import { HStack, VStack } from "@/shared/ui/Stack"
 import { Icon56UserCircleOutline } from "@vkontakte/icons"
 import { Headline, FormItem, Input, Avatar } from "@vkontakte/vkui"
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getRegistrationFormAvatar } from "../../model/selectors/registrationFormSelectors";
+import { getRegistrationFormAvatar, getRegistrationFormStatusAvatar } from "../../model/selectors/registrationFormSelectors";
 import cl from './AvatarBlock.module.scss';
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { registrationFormActions } from "../../model/slice/registrationFormSlice";
+import { StatusFormItem } from "@/shared/types/statusFormItem";
 
-interface AvatarBlockProps {
-    avatar: string,
-    statusAvatar: StatusFormItem,
-    setStatusAvatar: (value: StatusFormItem) => void;
-}
-
-export const AvatarBlock = (props: AvatarBlockProps) => {
+export const AvatarBlock = () => {
     const dispatch = useAppDispatch();
-
-    const {
-        statusAvatar,
-        setStatusAvatar,
-        avatar
-    } = props;
+    const avatar = useSelector(getRegistrationFormAvatar);
+    const statusAvatar = useSelector(getRegistrationFormStatusAvatar);
 
     const onChangeAvatar = useCallback((value: string) => {
         dispatch(registrationFormActions.setAvatar(value))
     }, [dispatch])
 
+    const setStatusAvatar = useCallback((value: StatusFormItem) => {
+        dispatch(registrationFormActions.setStatusAvatar(value))
+    }, [dispatch])
+
     useEffect(() => {
-        setStatusAvatar('default');
-    }, [avatar])
+        dispatch(registrationFormActions.setStatusAvatar('default'));
+    }, [avatar, dispatch])
 
     return (
         <HStack max gap="16">

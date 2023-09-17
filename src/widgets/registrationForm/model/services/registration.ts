@@ -8,20 +8,19 @@ interface RegistrationProps {
     password: string,
 }
 
-export const registration = createAsyncThunk<User, RegistrationProps, ThunkConfig<string>>(
+export const registration = createAsyncThunk<string, RegistrationProps, ThunkConfig<string>>(
     'registrationForm/registration',
     async (regData, thunkAPI) => {
-        const { extra } = thunkAPI;
+        const { extra, dispatch } = thunkAPI;
 
         try {
             const response = await extra.api.post('/registration', regData);
 
             if (!response.data) throw new Error();
-
+            
             return response.data
-        } catch (e) {
-            console.log(e);
-            return thunkAPI.rejectWithValue('Error');
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue(String(e.response.status));
         }
     }
 )

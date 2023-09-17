@@ -4,25 +4,20 @@ import { Headline, FormItem, Input } from "@vkontakte/vkui"
 import { TextTooltip } from "@vkontakte/vkui/dist/components/TextTooltip/TextTooltip"
 import cl from './UsernameBlock.module.scss';
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { registrationFormActions } from "../../model/slice/registrationFormSlice";
 import { StatusFormItem } from "@/shared/types/statusFormItem";
+import { useSelector } from "react-redux";
+import { getRegistrationFormAllStatusUsername, getRegistrationFormStatusUsernameText, getRegistrationFormUsername } from "../../model/selectors/registrationFormSelectors";
 
-interface UsernameBlockProps {
-    username: string;
-    allStatusUsername: StatusFormItem,
-    statusUsernameText: string,
-}
-
-export const UsernameBlock = (props: UsernameBlockProps) => {
+export const UsernameBlock = () => {
     const dispatch = useAppDispatch();
-    const {
-        username,
-        allStatusUsername,
-        statusUsernameText,
-    } = props;
+    const username = useSelector(getRegistrationFormUsername);
+    const allStatusUsername = useSelector(getRegistrationFormAllStatusUsername);
+    const statusUsernameText = useSelector(getRegistrationFormStatusUsernameText);
 
     const onChangeUsername = useCallback((value: string) => {
+        dispatch(registrationFormActions.resetError());
         dispatch(registrationFormActions.setUsername(value))
     }, [dispatch])
 

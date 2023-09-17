@@ -1,4 +1,4 @@
-import { RegistrationForm } from "@/features/registrationForm"
+import { RegistrationForm } from "@/widgets/registrationForm"
 import { Page } from "@/shared/ui/Page/Page"
 import { HStack } from "@/shared/ui/Stack"
 

@@ -78,7 +78,11 @@ const AuthByUsername = () => {
 
     return (
         <>
-            <DynamicLoader isLoading={isLoading} error={error} isSuccess={isSuccess} />
+            <DynamicLoader 
+                isLoading={isLoading} 
+                error={error} 
+                isSuccess={isSuccess} 
+            />
 
             <Div>
                 <VStack gap="16">

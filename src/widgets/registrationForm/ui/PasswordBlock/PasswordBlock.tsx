@@ -3,30 +3,28 @@ import { Icon16InfoCircle } from "@vkontakte/icons"
 import { Headline, FormItem, Input } from "@vkontakte/vkui"
 import { TextTooltip } from "@vkontakte/vkui/dist/components/TextTooltip/TextTooltip"
 import cl from './PasswordBlock.module.scss';
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { registrationFormActions } from "../../model/slice/registrationFormSlice";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { StatusFormItem } from "@/shared/types/statusFormItem";
+import { useSelector } from "react-redux";
+import { 
+    getRegistrationFormAllStatusPassword, 
+    getRegistrationFormAllStatusRepeatPassword, 
+    getRegistrationFormPassword, 
+    getRegistrationFormRepeatPassword, 
+    getRegistrationFormStatusPasswordText, 
+    getRegistrationFormStatusRepeatPasswordText 
+} from "../../model/selectors/registrationFormSelectors";
 
-interface PasswordBlockProps {
-    allStatusPassword: StatusFormItem;
-    statusPasswordText: string;
-    password: string;
-    allStatusRepeatPassword: StatusFormItem;
-    statusRepeatPasswordText: string;
-    repeatPassword: string;
-}
-
-export const PasswordBlock = (props: PasswordBlockProps) => {
+export const PasswordBlock = () => {
     const dispatch = useAppDispatch();
-    const {
-        allStatusPassword,
-        statusPasswordText,
-        password,
-        allStatusRepeatPassword,
-        statusRepeatPasswordText,
-        repeatPassword,
-    } = props;
+    const allStatusPassword = useSelector(getRegistrationFormAllStatusPassword)
+    const statusPasswordText = useSelector(getRegistrationFormStatusPasswordText)
+    const password = useSelector(getRegistrationFormPassword)
+    const allStatusRepeatPassword = useSelector(getRegistrationFormAllStatusRepeatPassword)
+    const statusRepeatPasswordText = useSelector(getRegistrationFormStatusRepeatPasswordText)
+    const repeatPassword = useSelector(getRegistrationFormRepeatPassword)
 
     const onChangePassword = useCallback((value: string) => {
         dispatch(registrationFormActions.setPassword(value))
