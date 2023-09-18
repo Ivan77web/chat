@@ -6,14 +6,18 @@ import { Spinner } from "@vkontakte/vkui";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { DialogCard } from "../DialogCard/DialogCard";
-import { HStack } from "@/shared/ui/Stack";
+import { HStack, VStack } from "@/shared/ui/Stack";
+import { FindUsers } from "@/features/findUsers";
+import { getDialogsFindUser } from "@/entities/Dialog/model/selectors/dialogsSelectors";
+import { DynamicModuleLoader, ReducersList } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { findUsersSliceReducer } from "@/features/findUsers/model/slice/findUsers";
 
 export const ListDialogs = () => {
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getDialogsIsLoading);
     const error = useSelector(getDialogsError);
     const dialogs = useSelector(getFilteredDialogsData);
-
+    const valueFindUser = useSelector(getDialogsFindUser);
     const dialogsId = useSelector(getUserDialogsId);
 
     useEffect(() => {
@@ -34,11 +38,17 @@ export const ListDialogs = () => {
         )
     }
 
-    if (dialogs.length === 0) {
+    if (dialogs.length === 0 && valueFindUser !== '') {
         return (
-            <HStack justify="center">
-                Нет диалогов
-            </HStack>
+            <VStack max>
+                <HStack justify="center" max>
+                    Нет диалогов
+                </HStack>
+
+                <HStack max>
+                    <FindUsers />
+                </HStack>
+            </VStack>
         )
     }
 

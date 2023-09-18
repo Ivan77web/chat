@@ -3,6 +3,7 @@ import { ListDialogs } from "../ListDialogs/ListDialogs"
 import cl from './DialogsList.module.scss';
 import { HStack } from "@/shared/ui/Stack";
 import { SearchDialog } from "../SearchDialog/SearchDialog";
+import { FindUsers } from "@/features/findUsers";
 
 export const DialogsList = () => {
     return (

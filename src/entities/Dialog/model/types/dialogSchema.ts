@@ -16,6 +16,7 @@ export interface Dialog {
 export interface DialogsSchema {
     dialogs?: Dialog[],
     filteredDialogs?: Dialog[],
+    findUser?: string,
     error?: string,
     isLoading: boolean
 }

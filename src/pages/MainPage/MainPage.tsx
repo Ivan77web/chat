@@ -8,7 +8,6 @@ const MainPage = () => {
         <Page>
             <HStack justify="between" gap="16" maxHeight isStretch>
                 <DialogsList />
-
                 <DialogContainer />
             </HStack>
         </Page>
