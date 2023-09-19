@@ -34,7 +34,10 @@ export const dialogsSlice = createSlice({
         },
         setFindUser: (state, action: PayloadAction<string>) => {
             state.findUser = action.payload
-        }
+        },
+        addDialog: (state, action: PayloadAction<Dialog>) => {
+            state.dialogs?.push(action.payload);
+        },
     },
     extraReducers: (builder) => {
         builder

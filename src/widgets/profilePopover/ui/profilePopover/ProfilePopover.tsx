@@ -18,7 +18,7 @@ export const ProfilePopover = () => {
                 onShownChange={setShown}
                 content={
                     <FormLayout>
-                        <FormItem>
+                        {/* <FormItem>
                             <Button
                                 size="l"
                                 mode="secondary"
@@ -26,7 +26,7 @@ export const ProfilePopover = () => {
                             >
                                 Профиль
                             </Button>
-                        </FormItem>
+                        </FormItem> */}
                         <FormItem>
                             <Logout />
                         </FormItem>

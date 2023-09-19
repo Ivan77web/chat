@@ -228,21 +228,25 @@ server.post('/addDialog', (req, res) => {
             id: idDialog,
         })
 
-        if (db.users[Number(myUser.id) - 1].dialogs) {
-            db.users[Number(myUser.id) - 1].dialogs.push(idDialog);
+        if (db.users.find(user => user.id === myUser.id).dialogs) {
+            db.users.find(user => user.id === myUser.id).dialogs.push(idDialog);
         } else {
-            db.users[Number(myUser.id) - 1].dialogs = [idDialog];
+            db.users.find(user => user.id === myUser.id).dialogs = [idDialog];
         }
 
-        if (db.users[Number(guest.id) - 1].dialogs) {
-            db.users[Number(guest.id) - 1].dialogs.push(idDialog);
+        if (db.users.find(user => user.id === guest.id).dialogs) {
+            db.users.find(user => user.id === guest.id).push(idDialog);
         } else {
-            db.users[Number(guest.id) - 1].dialogs = [idDialog];
+            db.users.find(user => user.id === guest.id).dialogs = [idDialog];
         }
 
         fs.writeFileSync(path.resolve(__dirname, 'db.json'), JSON.stringify(db), 'UTF-8')
 
-        return res.json(idDialog);
+        return res.json({
+            participants: [myUser, guest],
+            messages: [],
+            id: idDialog,
+        });
     } catch (e) {
         console.log(e);
         return res.status(500).json({ message: e.message });

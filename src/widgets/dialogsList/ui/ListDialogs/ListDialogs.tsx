@@ -24,6 +24,10 @@ export const ListDialogs = () => {
         dispatch(getDialogs(dialogsId))
     }, []);
 
+    useEffect(() => {
+        console.log(dialogs);
+    }, [dialogs])
+
     if (error) {
         return (
             <div>
