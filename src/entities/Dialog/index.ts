@@ -2,6 +2,7 @@ import {
     getDialogsIsLoading,
     getDialogsError,
     getDialogsData,
+    getDialogsFindUser,
 } from "./model/selectors/dialogsSelectors";
 import { getDialogs } from "./model/services/getDialogs";
 import { dialogsReducer } from "./model/slice/DialogsSlice";
@@ -24,5 +25,6 @@ export {
     getDialogsError,
     getDialogsData,
     dialogsActions,
-    getFilteredDialogsData
+    getFilteredDialogsData,
+    getDialogsFindUser
 }

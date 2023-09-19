@@ -8,7 +8,8 @@
             "dialogs": [
                 "1",
                 "2",
-                "3"
+                "3",
+                "4"
             ]
         },
         {
@@ -34,25 +35,10 @@
             "id": "5",
             "username": "SuperJmyh",
             "password": "13041969@Sp",
-            "avatar": "https://sun9-80.userapi.com/impg/nUsVEx-doyvzI9bi37wPtt-kb8ncQvO-HENnAQ/5nfgnadNJPA.jpg?size=1042x870&quality=96&sign=8c4dd383d66c7e4b84d552d764f7569f&type=album"
-        },
-        {
-            "id": "6",
-            "username": "qwewqrwqewqewqewe",
-            "password": "123QWE...",
-            "avatar": ""
-        },
-        {
-            "id": "7",
-            "username": "qwqwewqewqewqe",
-            "password": "123QWE...",
-            "avatar": ""
-        },
-        {
-            "id": "8",
-            "username": "wqeopqweopwqoeoqpweop",
-            "password": "123QWE...",
-            "avatar": ""
+            "avatar": "https://sun9-80.userapi.com/impg/nUsVEx-doyvzI9bi37wPtt-kb8ncQvO-HENnAQ/5nfgnadNJPA.jpg?size=1042x870&quality=96&sign=8c4dd383d66c7e4b84d552d764f7569f&type=album",
+            "dialogs": [
+                "4"
+            ]
         }
     ],
     "dialogs": [
@@ -337,6 +323,48 @@
                     "time": "22:14:10"
                 }
             ]
+        },
+        {
+            "participants": [
+                {
+                    "id": "1",
+                    "username": "Ivan",
+                    "password": "123",
+                    "avatar": "https://sun9-36.userapi.com/impg/c855220/v855220920/217645/M_4Hrk9SIZ4.jpg?size=723x1080&quality=96&sign=907eeb1184d759743dc91b92133cc94a&type=album",
+                    "dialogs": [
+                        "1",
+                        "2",
+                        "3"
+                    ]
+                },
+                {
+                    "id": "5",
+                    "username": "SuperJmyh",
+                    "password": "13041969@Sp",
+                    "avatar": "https://sun9-80.userapi.com/impg/nUsVEx-doyvzI9bi37wPtt-kb8ncQvO-HENnAQ/5nfgnadNJPA.jpg?size=1042x870&quality=96&sign=8c4dd383d66c7e4b84d552d764f7569f&type=album"
+                }
+            ],
+            "messages": [
+                {
+                    "autorId": "5",
+                    "message": "Hello",
+                    "date": "18:08:2023",
+                    "time": "23:10:15"
+                },
+                {
+                    "autorId": "1",
+                    "message": "Hello",
+                    "date": "18:08:2023",
+                    "time": "23:10:34"
+                },
+                {
+                    "autorId": "5",
+                    "message": "adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd adlkasjldakd.asjkd",
+                    "date": "18:08:2023",
+                    "time": "23:11:05"
+                }
+            ],
+            "id": "4"
         }
     ]
 }

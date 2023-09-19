@@ -4,3 +4,4 @@ export const getDialogsIsLoading = (state: StateSchema) => state.dialogs.isLoadi
 export const getDialogsError = (state: StateSchema) => state.dialogs?.error || '';
 export const getDialogsData = (state: StateSchema) => state.dialogs?.dialogs || [];
 export const getFilteredDialogsData = (state: StateSchema) => state.dialogs?.filteredDialogs || [];
+export const getDialogsFindUser = (state: StateSchema) => state.dialogs?.findUser || '';

@@ -10,12 +10,12 @@ server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
 
 // Нужно для небольшой задержки, чтобы запрос проходил не мгновенно, имитация реального апи
-server.use(async (req, res, next) => {
-    await new Promise((res) => {
-        setTimeout(res, 1500);
-    });
-    next();
-});
+// server.use(async (req, res, next) => {
+//     await new Promise((res) => {
+//         setTimeout(res, 1500);
+//     });
+//     next();
+// });
 
 // Эндпоинт для поиска юзера
 server.post('/findUser', (req, res) => {
@@ -204,6 +204,45 @@ server.post('/sendMessage', (req, res) => {
         fs.writeFileSync(path.resolve(__dirname, 'db.json'), JSON.stringify(db), 'UTF-8')
 
         return res.json(newCurrentDialog);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: e.message });
+    }
+});
+
+// Добавление нового чата
+server.post('/addDialog', (req, res) => {
+    try {
+        const {
+            myUser,
+            guest,
+        } = req.body;
+
+        let db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+
+        const idDialog = String(db.dialogs.length + 1) || "0";
+
+        db.dialogs.push({
+            participants: [myUser, guest],
+            messages: [],
+            id: idDialog,
+        })
+
+        if (db.users[Number(myUser.id) - 1].dialogs) {
+            db.users[Number(myUser.id) - 1].dialogs.push(idDialog);
+        } else {
+            db.users[Number(myUser.id) - 1].dialogs = [idDialog];
+        }
+
+        if (db.users[Number(guest.id) - 1].dialogs) {
+            db.users[Number(guest.id) - 1].dialogs.push(idDialog);
+        } else {
+            db.users[Number(guest.id) - 1].dialogs = [idDialog];
+        }
+
+        fs.writeFileSync(path.resolve(__dirname, 'db.json'), JSON.stringify(db), 'UTF-8')
+
+        return res.json(idDialog);
     } catch (e) {
         console.log(e);
         return res.status(500).json({ message: e.message });

@@ -3,6 +3,7 @@ import { DialogsSchema } from "@/entities/Dialog";
 import { NewMessageSchema } from "@/entities/NewMessage";
 import { UserSchema } from "@/entities/User";
 import { AuthByUsernameSchema } from "@/features/authByUsername";
+import { FindUsersSchema } from "@/features/findUsers";
 import { RegistrationFormSchema } from "@/widgets/registrationForm";
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
@@ -13,7 +14,8 @@ export interface StateSchema {
     dialogs: DialogsSchema,
     currentDialog: CurrentDialogSchema,
     newMessage: NewMessageSchema,
-
+    
+    findUsers?: FindUsersSchema,
     authData?: AuthByUsernameSchema,
     registrationForm?: RegistrationFormSchema,
 }

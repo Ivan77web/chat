@@ -21,14 +21,14 @@ export const Navbar = () => {
         <div className={cl.navbar}>
             <VStack maxHeight justify="center" align="center">
                 <HStack justify="between" max>
-                    <p className={cl.title}>
+                    <div className={cl.title}>
                         <AppLink to={getPathMain()}>
                             <HStack>
                                 <Icon56LogoVkColor/>
                                 Chat
                             </HStack>
                         </AppLink>
-                    </p>
+                    </div>
 
                     {
                         auth && (

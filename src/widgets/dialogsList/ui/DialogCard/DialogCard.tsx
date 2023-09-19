@@ -17,10 +17,11 @@ interface DialogCardProps {
 export const DialogCard = ({ dialog }: DialogCardProps) => {
     const dispatch = useAppDispatch();
     const myId = useSelector(getUserId);
-    const lastMessage = dialog.messages[dialog.messages.length - 1];
+    const lastMessage = dialog?.messages[dialog.messages.length - 1] || null;
     const guestAvatarId = dialog.participants[0].id !== myId ? dialog.participants[0].avatar : dialog.participants[1].avatar;
     const guestName = dialog.participants[0].id !== myId ? dialog.participants[0].username : dialog.participants[1].username;
-    const correctTime = lastMessage.time.slice(0, -3);
+    const correctTime = lastMessage?.time.slice(0, -3) || '';
+    const messageInLastMessage = lastMessage?.message || '';
 
     const onChangeDialog = useCallback((id: string) => {
         dispatch(getDataForCurrentDialog({ idDialog: id }))
@@ -46,7 +47,7 @@ export const DialogCard = ({ dialog }: DialogCardProps) => {
                 </div>
                 <VStack className={cl.body}>
                     <h4 className={cl.guestName}>{guestName}</h4>
-                    <p className={cl.titleMessage}>{lastMessage.message}</p>
+                    <p className={cl.titleMessage}>{messageInLastMessage}</p>
                 </VStack>
 
                 <p>{correctTime}</p>

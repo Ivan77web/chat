@@ -6,6 +6,7 @@ const initialState: DialogsSchema = {
     dialogs: [],
     isLoading: false,
     filteredDialogs: [],
+    findUser: '',
 }
 
 export const dialogsSlice = createSlice({
@@ -30,6 +31,9 @@ export const dialogsSlice = createSlice({
             } else {
                 state.filteredDialogs = state.dialogs
             }
+        },
+        setFindUser: (state, action: PayloadAction<string>) => {
+            state.findUser = action.payload
         }
     },
     extraReducers: (builder) => {
